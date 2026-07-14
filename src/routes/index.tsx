@@ -1,24 +1,55 @@
 import { createFileRoute } from "@tanstack/react-router";
+import { SiteNav } from "@/components/SiteNav";
+import { SiteFooter } from "@/components/SiteFooter";
+import { CategoryMarquee } from "@/components/CategoryMarquee";
+import { site } from "@/content/portfolio";
 
-// No head() here: the home route inherits title/description/og/twitter from
-// __root.tsx, and ships no og:image so serve-time hosting can inject the
-// project's social preview (explicit og:image or latest screenshot).
 export const Route = createFileRoute("/")({
   component: Index,
 });
 
-// IMPORTANT: Replace this placeholder. See ./README.md for routing conventions.
 function Index() {
   return (
-    <div
-      className="flex min-h-screen items-center justify-center"
-      style={{ backgroundColor: "#fcfbf8" }}
-    >
-      <img
-        data-lovable-blank-page-placeholder="REMOVE_THIS"
-        src="https://cdn.gpteng.co/blank-app-v1.svg"
-        alt="Your app will live here!"
-      />
+    <div className="min-h-screen bg-white text-[#1D1D1F]">
+      <SiteNav />
+
+      <main className="pt-32 pb-20">
+        {/* Hero */}
+        <section className="mx-auto mb-32 max-w-7xl px-6">
+          <div className="grid items-center gap-12 lg:grid-cols-2">
+            <div className="order-2 lg:order-1">
+              <h1 className="mb-6 text-6xl font-extrabold leading-[0.9] tracking-tighter md:text-8xl">
+                CREATIVITY<br />
+                <span className="text-[color:var(--cobalt)]">THROUGH</span>
+                <br />
+                IDENTITY
+              </h1>
+              <p className="max-w-md text-xl font-light leading-relaxed text-black/60">
+                {site.tagline}
+              </p>
+              <div className="mt-8 font-mono text-xs uppercase tracking-widest text-black/40">
+                {site.name} — {site.role}
+              </div>
+            </div>
+            <div className="order-1 lg:order-2">
+              <div className="aspect-[4/5] w-full overflow-hidden rounded-3xl bg-[color:var(--surface)] shadow-2xl shadow-[color:var(--cobalt)]/10 outline-1 -outline-offset-1 outline-black/5">
+                <img
+                  src={site.heroImage}
+                  alt={site.name}
+                  width={1080}
+                  height={1350}
+                  className="h-full w-full object-cover"
+                />
+              </div>
+            </div>
+          </div>
+        </section>
+
+        {/* Infinite marquee of category covers */}
+        <CategoryMarquee />
+      </main>
+
+      <SiteFooter />
     </div>
   );
 }
