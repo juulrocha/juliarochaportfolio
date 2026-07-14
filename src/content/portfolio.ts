@@ -1,3 +1,9 @@
+// ============================================================
+//  CONTEÚDO EDITÁVEL DO PORTFÓLIO
+//  Edite este arquivo para trocar textos, projetos e contatos.
+//  Nenhum outro arquivo precisa ser alterado.
+// ============================================================
+
 import heroPortrait from "@/assets/hero-portrait.jpg";
 import coverBranding from "@/assets/cover-branding.jpg";
 import coverAudiovisual from "@/assets/cover-audiovisual.jpg";
@@ -6,12 +12,21 @@ import coverLab from "@/assets/cover-lab.jpg";
 
 export type CategorySlug = "branding" | "audiovisual" | "comunicacao" | "lab";
 
+// "image" = projeto visual (mostra a imagem grande)
+// "case"  = case escrito (só texto, sem imagem)
+export type ProjectKind = "image" | "case";
+
 export type Project = {
+  kind: ProjectKind;
   title: string;
   client: string;
   year: string;
-  image: string;
-  description?: string;
+  /** Resumo curto, estilo jornal (2–4 linhas). */
+  description: string;
+  /** Usado apenas quando kind === "image". */
+  image?: string;
+  /** Opcional: destaque/resultado exibido em cases. */
+  result?: string;
 };
 
 export type Category = {
@@ -19,14 +34,18 @@ export type Category = {
   number: string;
   name: string;
   tagline: string;
+  /** Texto de abertura da landing page da categoria. */
+  intro: string;
   cover: string;
   projects: Project[];
 };
 
+// -------------------- DADOS GERAIS DO SITE --------------------
 export const site = {
   name: "Seu Nome",
   role: "Direção Criativa & Estratégia",
-  tagline: "Branding, audiovisual e comunicação com uma estética vibrante e minimalista.",
+  tagline:
+    "Branding, audiovisual e comunicação com uma estética vibrante e minimalista.",
   heroImage: heroPortrait,
   about: {
     title: "Sobre",
@@ -46,17 +65,45 @@ export const site = {
   },
 };
 
+// -------------------- CATEGORIAS E PROJETOS --------------------
+// Ordem = prioridade. O primeiro item aparece no topo da landing.
 export const categories: Category[] = [
   {
     slug: "branding",
     number: "01",
     name: "Branding",
     tagline: "Identidades visuais que carregam intenção.",
+    intro:
+      "Construção de marcas e sistemas visuais — do naming ao lançamento. Cases de estratégia, posicionamento e resultado.",
     cover: coverBranding,
     projects: [
-      { title: "Projeto Cobalto", client: "Cliente A", year: "2024", image: coverBranding },
-      { title: "Estúdio Norte", client: "Cliente B", year: "2024", image: coverBranding },
-      { title: "Marca Ensaio", client: "Cliente C", year: "2023", image: coverBranding },
+      {
+        kind: "case",
+        title: "Projeto Cobalto",
+        client: "Cliente A",
+        year: "2024",
+        description:
+          "Reposicionamento de marca para uma startup de tecnologia. Definição de propósito, arquitetura verbal e sistema visual.",
+        result: "+180% de reconhecimento espontâneo em 6 meses.",
+      },
+      {
+        kind: "case",
+        title: "Estúdio Norte",
+        client: "Cliente B",
+        year: "2024",
+        description:
+          "Rebranding completo de um estúdio criativo consolidado. Nova identidade, tom de voz e diretrizes de aplicação.",
+        result: "Prêmio de melhor rebrand independente do ano.",
+      },
+      {
+        kind: "image",
+        title: "Marca Ensaio",
+        client: "Cliente C",
+        year: "2023",
+        description:
+          "Identidade autoral para uma marca de moda experimental — tipografia condensada e paleta reduzida.",
+        image: coverBranding,
+      },
     ],
   },
   {
@@ -64,11 +111,37 @@ export const categories: Category[] = [
     number: "02",
     name: "Audiovisual",
     tagline: "Filmes, campanhas e narrativas em movimento.",
+    intro:
+      "Direção e produção de peças em vídeo — do conceito à finalização. Filmes de marca, campanhas e conteúdo editorial.",
     cover: coverAudiovisual,
     projects: [
-      { title: "Curta Azul", client: "Cliente D", year: "2024", image: coverAudiovisual },
-      { title: "Campanha Verão", client: "Cliente E", year: "2024", image: coverAudiovisual },
-      { title: "Documentário Rota", client: "Cliente F", year: "2023", image: coverAudiovisual },
+      {
+        kind: "image",
+        title: "Curta Azul",
+        client: "Cliente D",
+        year: "2024",
+        description:
+          "Curta-metragem de 4 minutos explorando movimento e cor. Direção, roteiro e edição.",
+        image: coverAudiovisual,
+      },
+      {
+        kind: "image",
+        title: "Campanha Verão",
+        client: "Cliente E",
+        year: "2024",
+        description:
+          "Série de 3 filmes para lançamento sazonal. Direção criativa e supervisão de pós-produção.",
+        image: coverAudiovisual,
+      },
+      {
+        kind: "image",
+        title: "Documentário Rota",
+        client: "Cliente F",
+        year: "2023",
+        description:
+          "Documentário longa sobre trajetos urbanos. Direção e edição.",
+        image: coverAudiovisual,
+      },
     ],
   },
   {
@@ -76,10 +149,28 @@ export const categories: Category[] = [
     number: "03",
     name: "Comunicação",
     tagline: "Estratégia editorial e conteúdo com voz própria.",
+    intro:
+      "Consultoria editorial, arquitetura de conteúdo e materiais de comunicação para marcas que querem soar como gente.",
     cover: coverComunicacao,
     projects: [
-      { title: "Editorial Índigo", client: "Cliente G", year: "2024", image: coverComunicacao },
-      { title: "Relatório Anual", client: "Cliente H", year: "2023", image: coverComunicacao },
+      {
+        kind: "image",
+        title: "Editorial Índigo",
+        client: "Cliente G",
+        year: "2024",
+        description:
+          "Redesign completo do editorial digital. Nova grid, tipografia e fluxo de leitura.",
+        image: coverComunicacao,
+      },
+      {
+        kind: "case",
+        title: "Relatório Anual",
+        client: "Cliente H",
+        year: "2023",
+        description:
+          "Concepção, redação e diagramação do relatório anual. Um objeto editorial que sintetiza um ano de operações.",
+        result: "Distribuído para 12 mil stakeholders em três idiomas.",
+      },
     ],
   },
   {
@@ -87,10 +178,28 @@ export const categories: Category[] = [
     number: "04",
     name: "Lab",
     tagline: "Experimentos, colaborações e pesquisa visual.",
+    intro:
+      "Território livre — testes tipográficos, pôsteres autorais, colaborações e projetos que ainda estão virando algo.",
     cover: coverLab,
     projects: [
-      { title: "Estudo Tinta", client: "Autoral", year: "2024", image: coverLab },
-      { title: "Poster Series", client: "Autoral", year: "2023", image: coverLab },
+      {
+        kind: "image",
+        title: "Estudo Tinta",
+        client: "Autoral",
+        year: "2024",
+        description:
+          "Série de estudos em tinta sobre papel — exploração de gestos e densidade cromática.",
+        image: coverLab,
+      },
+      {
+        kind: "image",
+        title: "Poster Series",
+        client: "Autoral",
+        year: "2023",
+        description:
+          "Coleção de dez pôsteres experimentais sobre linguagem, forma e ruído.",
+        image: coverLab,
+      },
     ],
   },
 ];
