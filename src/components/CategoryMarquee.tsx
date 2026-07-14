@@ -33,7 +33,7 @@ export function CategoryMarquee() {
   return (
     <section className="w-full overflow-hidden">
       <div className="mx-auto mb-10 flex max-w-7xl items-baseline justify-between px-6">
-        <h2 className="text-3xl font-bold tracking-tight">Projetos & Atuação</h2>
+        <h2 className="font-[family-name:var(--font-display)] text-3xl uppercase tracking-tight">Projetos & Atuação</h2>
         <span className="font-mono text-sm text-[color:var(--cobalt)]">
           [ 04 CATEGORIAS ]
         </span>
@@ -41,8 +41,8 @@ export function CategoryMarquee() {
 
       <div className="group relative">
         {/* Fades on the edges */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-white to-transparent" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-white to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-24 bg-gradient-to-r from-[color:var(--background)] to-transparent" />
+        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-24 bg-gradient-to-l from-[color:var(--background)] to-transparent" />
 
         <div className="animate-marquee pause-on-hover flex w-max gap-6 py-4">
           {loop.map((c, i) => (

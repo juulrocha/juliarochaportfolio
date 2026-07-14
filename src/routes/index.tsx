@@ -10,7 +10,7 @@ export const Route = createFileRoute("/")({
 
 function Index() {
   return (
-    <div className="min-h-screen bg-white text-[#1D1D1F]">
+    <div className="min-h-screen bg-[color:var(--background)] text-[#1D1D1F]">
       <SiteNav />
 
       <main className="pt-32 pb-20">
@@ -18,13 +18,13 @@ function Index() {
         <section className="mx-auto mb-32 max-w-7xl px-6">
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="order-2 lg:order-1">
-              <h1 className="mb-6 text-6xl font-extrabold leading-[0.9] tracking-tighter md:text-8xl">
+              <h1 className="mb-6 font-[family-name:var(--font-display)] text-7xl leading-[0.85] tracking-tight uppercase md:text-9xl">
                 CREATIVITY<br />
                 <span className="text-[color:var(--cobalt)]">THROUGH</span>
                 <br />
                 IDENTITY
               </h1>
-              <p className="max-w-md text-xl font-light leading-relaxed text-black/60">
+              <p className="max-w-md text-lg font-light leading-relaxed text-black/60">
                 {site.tagline}
               </p>
               <div className="mt-8 font-mono text-xs uppercase tracking-widest text-black/40">
