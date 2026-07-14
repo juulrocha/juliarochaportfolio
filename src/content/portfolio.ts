@@ -42,10 +42,9 @@ export type Category = {
 
 // -------------------- DADOS GERAIS DO SITE --------------------
 export const site = {
-  name: "Seu Nome",
-  role: "Direção Criativa & Estratégia",
-  tagline:
-    "Branding, audiovisual e comunicação com uma estética vibrante e minimalista.",
+  name: "JÚLIA ROCHA",
+  role: "TODA BOA IDEIA COMEÇA COM UMA BOA PERGUNTA.",
+  tagline: "Branding • Criação • Comunicação",
   heroImage: heroPortrait,
   about: {
     title: "Sobre",

@@ -19,16 +19,14 @@ function Index() {
           <div className="grid items-center gap-12 lg:grid-cols-2">
             <div className="order-2 lg:order-1">
               <h1 className="mb-6 font-[family-name:var(--font-display)] text-7xl leading-[0.85] tracking-tight uppercase md:text-9xl">
-                CREATIVITY<br />
-                <span className="text-[color:var(--cobalt)]">THROUGH</span>
-                <br />
-                IDENTITY
+                JÚLIA<br />
+                <span className="text-[color:var(--cobalt)]">ROCHA</span>
               </h1>
               <p className="max-w-md text-lg font-light leading-relaxed text-black/60">
                 {site.tagline}
               </p>
-              <div className="mt-8 font-mono text-xs uppercase tracking-widest text-black/40">
-                {site.name} — {site.role}
+              <div className="mt-8 font-[family-name:var(--font-display)] text-sm uppercase tracking-wider text-black/60">
+                {site.role}
               </div>
             </div>
             <div className="order-1 lg:order-2">

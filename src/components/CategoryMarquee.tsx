@@ -33,9 +33,9 @@ export function CategoryMarquee() {
   return (
     <section className="w-full overflow-hidden">
       <div className="mx-auto mb-10 flex max-w-7xl items-baseline justify-between px-6">
-        <h2 className="font-[family-name:var(--font-display)] text-3xl uppercase tracking-tight">Projetos & Atuação</h2>
-        <span className="font-mono text-sm text-[color:var(--cobalt)]">
-          [ 04 CATEGORIAS ]
+        <h2 className="font-[family-name:var(--font-display)] text-3xl uppercase tracking-tight">PROJETOS&nbsp;</h2>
+        <span className="font-mono text-sm text-[color:var(--cobalt)] uppercase">
+          EXPLORAR
         </span>
       </div>
 
