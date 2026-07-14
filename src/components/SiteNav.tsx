@@ -8,7 +8,7 @@ export function SiteNav() {
           to="/"
           className="font-[family-name:var(--font-display)] text-xl uppercase tracking-tight text-[color:var(--cobalt)]"
         >
-          PORTFOLIO.
+          PORTFÓLIO.
         </Link>
         <div className="flex gap-8 text-sm font-medium tracking-tight">
           <Link
