@@ -17,14 +17,14 @@ export const Route = createFileRoute("/contato")({
 
 function Contato() {
   return (
-    <div className="min-h-screen bg-white text-[#1D1D1F]">
+    <div className="min-h-screen bg-[color:var(--background)] text-[#1D1D1F]">
       <SiteNav />
       <main className="px-6 pt-32 pb-24">
         <div className="mx-auto max-w-3xl">
           <span className="mb-4 block font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
             Contato
           </span>
-          <h1 className="mb-12 text-5xl font-extrabold leading-[0.95] tracking-tighter md:text-7xl">
+          <h1 className="mb-12 font-[family-name:var(--font-display)] text-6xl uppercase leading-[0.9] tracking-tight md:text-8xl">
             Vamos criar<br />
             algo <span className="text-[color:var(--cobalt)]">juntos.</span>
           </h1>

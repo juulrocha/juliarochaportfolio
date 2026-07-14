@@ -17,7 +17,7 @@ export const Route = createFileRoute("/sobre")({
 
 function Sobre() {
   return (
-    <div className="min-h-screen bg-white text-[#1D1D1F]">
+    <div className="min-h-screen bg-[color:var(--background)] text-[#1D1D1F]">
       <SiteNav />
       <main className="px-6 pt-32 pb-24">
         <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-[1fr_1.5fr] md:gap-20">
@@ -35,7 +35,7 @@ function Sobre() {
             <span className="mb-4 block font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
               Sobre
             </span>
-            <h1 className="mb-8 text-4xl font-extrabold tracking-tighter md:text-6xl">
+            <h1 className="mb-8 font-[family-name:var(--font-display)] text-5xl uppercase tracking-tight md:text-7xl">
               {site.name}
             </h1>
             <div className="space-y-6 text-lg font-light leading-relaxed text-black/70">
