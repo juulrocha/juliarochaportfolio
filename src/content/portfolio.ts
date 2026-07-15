@@ -54,8 +54,8 @@ export const site = {
     ],
   },
   contact: {
-    email: "ola@seudominio.com",
-    location: "Brasil — atuando globalmente",
+    email: "ajuulrocha@gmail.com",
+    location: "Diadema • São Paulo • Brasil",
     socials: [
       { label: "Instagram", href: "https://instagram.com" },
       { label: "LinkedIn", href: "https://linkedin.com" },
