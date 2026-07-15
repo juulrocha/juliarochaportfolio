@@ -16,7 +16,7 @@ export function SiteNav() {
             className="transition-colors hover:text-[color:var(--cobalt)]"
             activeProps={{ className: "text-[color:var(--cobalt)]" }}
           >
-            Sobre
+            Sobre mim
           </Link>
           <Link
             to="/contato"
