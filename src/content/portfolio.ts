@@ -146,7 +146,7 @@ export const categories: Category[] = [
   {
     slug: "comunicacao",
     number: "03",
-    name: "Comunicação",
+    name: "Criação",
     tagline: "Estratégia editorial e conteúdo com voz própria.",
     intro:
       "Consultoria editorial, arquitetura de conteúdo e materiais de comunicação para marcas que querem soar como gente.",
@@ -175,7 +175,7 @@ export const categories: Category[] = [
   {
     slug: "lab",
     number: "04",
-    name: "Lab",
+    name: "Estratégia",
     tagline: "Experimentos, colaborações e pesquisa visual.",
     intro:
       "Território livre — testes tipográficos, pôsteres autorais, colaborações e projetos que ainda estão virando algo.",
