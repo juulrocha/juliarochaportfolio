@@ -73,21 +73,21 @@ export const categories: Category[] = [
     name: "Branding",
     tagline: "Identidades visuais que carregam intenção.",
     intro:
-      "Construção de marcas e sistemas visuais — do naming ao lançamento. Cases de estratégia, posicionamento e resultado.",
+      "Posicionamento, identidade e direção para marcas que precisam comunicar intenção.",
     cover: coverBranding,
     projects: [
       {
         kind: "case",
-        title: "Projeto Cobalto",
-        client: "Cliente A",
-        year: "2024",
+        title: "CONSTRUÇÃO DE MARCA",
+        client: "EUNIA COMUNICAÇÃO",
+        year: "2025",
         description:
           "Reposicionamento de marca para uma startup de tecnologia. Definição de propósito, arquitetura verbal e sistema visual.",
         result: "+180% de reconhecimento espontâneo em 6 meses.",
       },
       {
         kind: "case",
-        title: "Estúdio Norte",
+        title: "IDENTIDADE VISUAL",
         client: "Cliente B",
         year: "2024",
         description:

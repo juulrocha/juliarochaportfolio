@@ -11,7 +11,7 @@ function ProjectBlock({ project, index }: { project: Project; index: number }) {
       <div className="grid gap-10 md:grid-cols-12">
         {/* Meta column — jornal style */}
         <div className="md:col-span-3">
-          <div className="font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
+          <div className="font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)] opacity-0">
             {num} / {project.kind === "case" ? "Case" : "Projeto"}
           </div>
           <div className="mt-3 space-y-1 font-[family-name:var(--font-editorial)] text-xs uppercase tracking-wider text-black/50">
@@ -75,7 +75,7 @@ export function CategoryPage({ category }: { category: Category }) {
           {/* Landing hero */}
           <header className="mb-8">
             <span className="mb-6 block font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
-              {category.number} — Categoria
+              {category.number}&nbsp;
             </span>
             <h1 className="font-[family-name:var(--font-display)] text-6xl uppercase leading-[0.85] tracking-tight md:text-[10rem]">
               {category.name}
