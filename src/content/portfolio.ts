@@ -43,7 +43,7 @@ export type Category = {
 // -------------------- DADOS GERAIS DO SITE --------------------
 export const site = {
   name: "JÚLIA ROCHA",
-  role: "TODA BOA IDEIA COMEÇA COM UMA BOA PERGUNTA.",
+  role: " ",
   tagline: "Branding • Criação • Comunicação",
   heroImage: heroPortrait,
   about: {
