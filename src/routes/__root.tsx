@@ -77,27 +77,30 @@ export const Route = createRootRouteWithContext<{ queryClient: QueryClient }>()(
     meta: [
       { charSet: "utf-8" },
       { name: "viewport", content: "width=device-width, initial-scale=1" },
-      { title: "Portfolio — Branding, Audiovisual, Comunicação & Lab" },
+      { title: "Júlia Rocha | Branding, Criação & Comunicação" },
       {
         name: "description",
         content:
-          "Portfólio criativo com projetos de branding, audiovisual, comunicação e experimentação visual.",
+          "Uma seleção dos projetos que marcam minha trajetória até aqui. Espaço para mostrar como penso, crio e transformo ideias em experiências.",
       },
       {
         property: "og:title",
-        content: "Portfolio — Branding, Audiovisual, Comunicação & Lab",
+        content: "Júlia Rocha | Branding, Criação & Comunicação",
       },
       {
         property: "og:description",
         content:
-          "Portfólio criativo com projetos de branding, audiovisual, comunicação e experimentação visual.",
+          "Uma seleção dos projetos que marcam minha trajetória até aqui. Espaço para mostrar como penso, crio e transformo ideias em experiências.",
       },
       { property: "og:type", content: "website" },
       { name: "twitter:card", content: "summary_large_image" },
+      { name: "twitter:title", content: "Júlia Rocha | Branding, Criação & Comunicação" },
+      { name: "twitter:description", content: "Uma seleção dos projetos que marcam minha trajetória até aqui. Espaço para mostrar como penso, crio e transformo ideias em experiências." },
+      { property: "og:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4e76dbbe-f794-4239-abf7-593057ce93e6/id-preview-fb8fd3c4--85f7919d-6f37-4d8b-b8c7-219c32e894ee.lovable.app-1784074307876.png" },
+      { name: "twitter:image", content: "https://pub-bb2e103a32db4e198524a2e9ed8f35b4.r2.dev/4e76dbbe-f794-4239-abf7-593057ce93e6/id-preview-fb8fd3c4--85f7919d-6f37-4d8b-b8c7-219c32e894ee.lovable.app-1784074307876.png" },
     ],
     links: [
       { rel: "stylesheet", href: appCss },
-      { rel: "icon", href: "/favicon.ico", type: "image/x-icon" },
       { rel: "preconnect", href: "https://fonts.googleapis.com" },
       { rel: "preconnect", href: "https://fonts.gstatic.com", crossOrigin: "anonymous" },
       {
