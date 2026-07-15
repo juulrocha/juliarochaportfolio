@@ -125,7 +125,7 @@ export const categories: Category[] = [
       },
       {
         kind: "image",
-        title: "Campanha Verão",
+        title: "SOCIAL CONTENT",
         client: "Cliente E",
         year: "2024",
         description:
