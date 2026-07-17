@@ -1,0 +1,146 @@
+import { useState } from "react";
+import { CategoryLayout, BlockTitle } from "@/components/CategoryLayout";
+import { EditableImage } from "@/components/Placeholder";
+import { audiovisualContent } from "@/content/portfolio";
+
+/**
+ * Landing 02 — Audiovisual
+ * Curtas em grade tipo YouTube + Pilha expansível de vídeos para redes.
+ */
+export function AudiovisualLanding() {
+  const c = audiovisualContent;
+
+  return (
+    <CategoryLayout number={c.number} name={c.name} intro={c.intro}>
+      {/* Bloco 1 — Curtas */}
+      <section className="border-t border-black/10 pt-16 md:pt-24">
+        <BlockTitle>{c.shorts.title}</BlockTitle>
+        <p className="mb-10 max-w-2xl font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
+          {c.shorts.description}
+        </p>
+
+        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+          {c.shorts.items.map((v, i) => (
+            <a
+              key={i}
+              href={v.href}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="group block"
+            >
+              <div className="overflow-hidden">
+                <EditableImage
+                  src={v.thumbnail}
+                  alt={v.name}
+                  className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                />
+              </div>
+              <h3 className="mt-3 font-[family-name:var(--font-display)] text-base uppercase tracking-tight transition-colors group-hover:text-[color:var(--cobalt)]">
+                {v.name}
+              </h3>
+              <p className="mt-1 font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
+                {v.description}
+              </p>
+            </a>
+          ))}
+        </div>
+      </section>
+
+      {/* Bloco 2 — Vídeos para Redes (pilha expansível) */}
+      <section className="mt-24 border-t border-black/10 pt-16 md:mt-32 md:pt-24">
+        <BlockTitle>{c.socialVideos.title}</BlockTitle>
+        <p className="mb-10 max-w-2xl font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
+          {c.socialVideos.description}
+        </p>
+        <SocialStack items={c.socialVideos.items} />
+      </section>
+    </CategoryLayout>
+  );
+}
+
+type SocialItem = {
+  thumbnail: string;
+  username: string;
+  platform: string;
+  href: string;
+};
+
+function SocialStack({ items }: { items: SocialItem[] }) {
+  const [open, setOpen] = useState(false);
+
+  if (!open) {
+    return (
+      <button
+        type="button"
+        onClick={() => setOpen(true)}
+        aria-label="Expandir vídeos"
+        className="group relative mx-auto block h-[360px] w-full max-w-sm"
+      >
+        {items.slice(0, 4).map((v, i) => {
+          const offset = i * 10;
+          const rot = (i - 1.5) * 3;
+          return (
+            <div
+              key={i}
+              className="absolute left-1/2 top-0 aspect-[9/16] w-[220px] -translate-x-1/2 overflow-hidden bg-white shadow-xl ring-1 ring-black/5 transition-all duration-500 group-hover:shadow-2xl"
+              style={{
+                transform: `translate(-50%, ${offset}px) rotate(${rot}deg)`,
+                zIndex: items.length - i,
+              }}
+            >
+              <EditableImage
+                src={v.thumbnail}
+                alt={v.username}
+                className="h-full w-full object-cover"
+              />
+            </div>
+          );
+        })}
+        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-8 font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
+          Clique para expandir
+        </span>
+      </button>
+    );
+  }
+
+  return (
+    <div>
+      <div className="grid animate-in fade-in gap-6 duration-500 sm:grid-cols-2 md:grid-cols-3">
+        {items.map((v, i) => (
+          <a
+            key={i}
+            href={v.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="group block"
+          >
+            <div className="overflow-hidden bg-white shadow-md ring-1 ring-black/5">
+              <EditableImage
+                src={v.thumbnail}
+                alt={v.username}
+                className="aspect-[9/16] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+              />
+            </div>
+            <div className="mt-3">
+              <div className="font-[family-name:var(--font-display)] text-sm uppercase tracking-tight transition-colors group-hover:text-[color:var(--cobalt)]">
+                {v.username}
+              </div>
+              <div className="mt-0.5 font-mono text-xs uppercase tracking-widest text-black/50">
+                {v.platform}
+              </div>
+            </div>
+          </a>
+        ))}
+      </div>
+      <div className="mt-8 text-center">
+        <button
+          type="button"
+          onClick={() => setOpen(false)}
+          className="font-mono text-xs uppercase tracking-widest text-black/50 transition-colors hover:text-[color:var(--cobalt)]"
+        >
+          — Recolher —
+        </button>
+      </div>
+    </div>
+  );
+}

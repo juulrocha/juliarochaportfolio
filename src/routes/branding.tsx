@@ -1,18 +1,16 @@
 import { createFileRoute } from "@tanstack/react-router";
-import { CategoryPage } from "@/components/CategoryPage";
-import { categoryBySlug, site } from "@/content/portfolio";
-
-const category = categoryBySlug("branding");
+import { BrandingLanding } from "@/components/landings/BrandingLanding";
+import { brandingContent } from "@/content/portfolio";
+import { site } from "@/content/portfolio";
 
 export const Route = createFileRoute("/branding")({
   head: () => ({
     meta: [
-      { title: `${category.name} — ${site.name}` },
-      { name: "description", content: category.tagline },
-      { property: "og:title", content: `${category.name} — ${site.name}` },
-      { property: "og:description", content: category.tagline },
-      { property: "og:image", content: category.cover },
+      { title: `${brandingContent.name} — ${site.name}` },
+      { name: "description", content: brandingContent.intro },
+      { property: "og:title", content: `${brandingContent.name} — ${site.name}` },
+      { property: "og:description", content: brandingContent.intro },
     ],
   }),
-  component: () => <CategoryPage category={category} />,
+  component: BrandingLanding,
 });

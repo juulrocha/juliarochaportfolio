@@ -1,207 +1,210 @@
 // ============================================================
 //  CONTEÚDO EDITÁVEL DO PORTFÓLIO
-//  Edite este arquivo para trocar textos, projetos e contatos.
-//  Nenhum outro arquivo precisa ser alterado.
+//  Todos os textos, links e imagens abaixo são editáveis.
+//  Deixe `image: ""` (string vazia) para que apareça o placeholder
+//  padrão — é possível trocar a imagem depois clicando no
+//  placeholder pelo editor visual do Lovable.
 // ============================================================
 
-import heroPortrait from "@/assets/hero-portrait.jpg";
-import coverBranding from "@/assets/cover-branding.jpg";
-import coverAudiovisual from "@/assets/cover-audiovisual.jpg";
-import coverComunicacao from "@/assets/cover-comunicacao.jpg";
-import coverLab from "@/assets/cover-lab.jpg";
+export const PLACEHOLDER_IMAGE = "/placeholder.svg";
 
-export type CategorySlug = "branding" | "audiovisual" | "comunicacao" | "lab";
-
-// "image" = projeto visual (mostra a imagem grande)
-// "case"  = case escrito (só texto, sem imagem)
-export type ProjectKind = "image" | "case";
-
-export type Project = {
-  kind: ProjectKind;
-  title: string;
-  client: string;
-  year: string;
-  /** Resumo curto, estilo jornal (2–4 linhas). */
-  description: string;
-  /** Usado apenas quando kind === "image". */
-  image?: string;
-  /** Opcional: destaque/resultado exibido em cases. */
-  result?: string;
-};
-
-export type Category = {
-  slug: CategorySlug;
-  number: string;
-  name: string;
-  tagline: string;
-  /** Texto de abertura da landing page da categoria. */
-  intro: string;
-  cover: string;
-  projects: Project[];
-};
+export type ImageField = string; // caminho da imagem ou "" para placeholder
+export type LinkField = string;  // URL absoluta
 
 // -------------------- DADOS GERAIS DO SITE --------------------
 export const site = {
   name: "JÚLIA ROCHA",
-  role: " ",
   tagline: "Branding • Criação • Comunicação",
-  heroImage: heroPortrait,
+  headline: "JÚLIA ROCHA",
+  subheadline: "Portfólio autoral de branding, audiovisual, criação e estratégia.",
   about: {
-    title: "Sobre",
+    eyebrow: "Sobre",
+    title: "Júlia Rocha",
+    banner: "" as ImageField, // banner horizontal editável
     body: [
-      "Sou um profissional criativo com atuação em branding, audiovisual, comunicação e laboratório de experimentação visual.",
-      "Trabalho na interseção entre estratégia e estética, criando identidades e narrativas que carregam personalidade — sem abrir mão de rigor e clareza.",
+      "Escreva aqui um parágrafo curto sobre você — sua trajetória, formação e áreas de interesse.",
+      "Um segundo parágrafo pode aprofundar sua forma de pensar, referências e como você organiza os projetos.",
     ],
   },
   contact: {
-    email: "ajuulrocha@gmail.com",
+    email: "ajuulrocha@email.com",
     location: "Diadema • São Paulo • Brasil",
     socials: [
-      { label: "Instagram", href: "https://instagram.com" },
-      { label: "LinkedIn", href: "https://linkedin.com" },
-      { label: "Behance", href: "https://behance.net" },
+      { label: "Instagram", href: "https://www.instagram.com/juulrocha?igsh=ZDVpZHFsdG9kZnl5&utm_source=qr" as LinkField },
+      { label: "LinkedIn", href: "https://www.linkedin.com/in/ajuliarocha" as LinkField },
+      { label: "Behance", href: "https://www.behance.net/juliarocha71" as LinkField },
+      { label: "TikTok", href: "https://www.tiktok.com/@juulrocha?_r=1&_t=zs-94dnpjvznu4" as LinkField },
+      { label: "YouTube", href: "https://youtube.com/@juulrocha?si=P3-l4MZSakzF6imQ" as LinkField },
     ],
   },
 };
 
-// -------------------- CATEGORIAS E PROJETOS --------------------
-// Ordem = prioridade. O primeiro item aparece no topo da landing.
-export const categories: Category[] = [
-  {
-    slug: "branding",
-    number: "01",
-    name: "Branding",
-    tagline: "Identidades visuais que carregam intenção.",
-    intro:
-      "Posicionamento, identidade e direção para marcas que precisam comunicar intenção.",
-    cover: coverBranding,
-    projects: [
-      {
-        kind: "case",
-        title: "CONSTRUÇÃO DE MARCA",
-        client: "EUNIA COMUNICAÇÃO",
-        year: "2025",
-        description:
-          "Reposicionamento de marca para uma startup de tecnologia. Definição de propósito, arquitetura verbal e sistema visual.",
-        result: "+180% de reconhecimento espontâneo em 6 meses.",
-      },
-      {
-        kind: "case",
-        title: "IDENTIDADE VISUAL",
-        client: "Cliente B",
-        year: "2024",
-        description:
-          "Rebranding completo de um estúdio criativo consolidado. Nova identidade, tom de voz e diretrizes de aplicação.",
-        result: "Prêmio de melhor rebrand independente do ano.",
-      },
-      {
-        kind: "image",
-        title: "Marca Ensaio",
-        client: "Cliente C",
-        year: "2023",
-        description:
-          "Identidade autoral para uma marca de moda experimental — tipografia condensada e paleta reduzida.",
-        image: coverBranding,
-      },
-    ],
-  },
-  {
-    slug: "audiovisual",
-    number: "02",
-    name: "Audiovisual",
-    tagline: "Filmes, campanhas e narrativas em movimento.",
-    intro:
-      "Direção e produção de peças em vídeo — do conceito à finalização. Filmes de marca, campanhas e conteúdo editorial.",
-    cover: coverAudiovisual,
-    projects: [
-      {
-        kind: "image",
-        title: "Curta Azul",
-        client: "Cliente D",
-        year: "2024",
-        description:
-          "Curta-metragem de 4 minutos explorando movimento e cor. Direção, roteiro e edição.",
-        image: coverAudiovisual,
-      },
-      {
-        kind: "image",
-        title: "SOCIAL CONTENT",
-        client: "Cliente E",
-        year: "2024",
-        description:
-          "Série de 3 filmes para lançamento sazonal. Direção criativa e supervisão de pós-produção.",
-        image: coverAudiovisual,
-      },
-      {
-        kind: "image",
-        title: "Documentário Rota",
-        client: "Cliente F",
-        year: "2023",
-        description:
-          "Documentário longa sobre trajetos urbanos. Direção e edição.",
-        image: coverAudiovisual,
-      },
-    ],
-  },
-  {
-    slug: "comunicacao",
-    number: "03",
-    name: "Criação",
-    tagline: "Estratégia editorial e conteúdo com voz própria.",
-    intro:
-      "Consultoria editorial, arquitetura de conteúdo e materiais de comunicação para marcas que querem soar como gente.",
-    cover: coverComunicacao,
-    projects: [
-      {
-        kind: "image",
-        title: "Editorial Índigo",
-        client: "Cliente G",
-        year: "2024",
-        description:
-          "Redesign completo do editorial digital. Nova grid, tipografia e fluxo de leitura.",
-        image: coverComunicacao,
-      },
-      {
-        kind: "case",
-        title: "Relatório Anual",
-        client: "Cliente H",
-        year: "2023",
-        description:
-          "Concepção, redação e diagramação do relatório anual. Um objeto editorial que sintetiza um ano de operações.",
-        result: "Distribuído para 12 mil stakeholders em três idiomas.",
-      },
-    ],
-  },
-  {
-    slug: "lab",
-    number: "04",
-    name: "Estratégia",
-    tagline: "Experimentos, colaborações e pesquisa visual.",
-    intro:
-      "Território livre — testes tipográficos, pôsteres autorais, colaborações e projetos que ainda estão virando algo.",
-    cover: coverLab,
-    projects: [
-      {
-        kind: "image",
-        title: "Estudo Tinta",
-        client: "Autoral",
-        year: "2024",
-        description:
-          "Série de estudos em tinta sobre papel — exploração de gestos e densidade cromática.",
-        image: coverLab,
-      },
-      {
-        kind: "image",
-        title: "Poster Series",
-        client: "Autoral",
-        year: "2023",
-        description:
-          "Coleção de dez pôsteres experimentais sobre linguagem, forma e ruído.",
-        image: coverLab,
-      },
-    ],
-  },
+// -------------------- RESUMO DAS CATEGORIAS (usado no carrossel da home) --------------------
+export type CategorySlug = "branding" | "audiovisual" | "criacao" | "estrategia";
+
+export type CategorySummary = {
+  slug: CategorySlug;
+  number: string;
+  name: string;
+  cover: ImageField;
+};
+
+export const categories: CategorySummary[] = [
+  { slug: "branding",    number: "01", name: "Branding",    cover: "" },
+  { slug: "audiovisual", number: "02", name: "Audiovisual", cover: "" },
+  { slug: "criacao",     number: "03", name: "Criação",     cover: "" },
+  { slug: "estrategia",  number: "04", name: "Estratégia",  cover: "" },
 ];
 
-export const categoryBySlug = (slug: CategorySlug) =>
-  categories.find((c) => c.slug === slug)!;
+// ============================================================
+//  LANDING 01 — BRANDING
+// ============================================================
+export const brandingContent = {
+  slug: "branding" as const,
+  number: "01",
+  name: "Branding",
+  intro:
+    "Posicionamento, identidade e direção para marcas que precisam comunicar intenção.",
+  brandBuild: {
+    title: "Construção de Marca",
+    projects: [
+      {
+        image: "" as ImageField,
+        name: "Projeto 01",
+        description:
+          "Descrição curta do projeto — contexto, o que foi feito e o papel do seu trabalho.",
+      },
+      {
+        image: "" as ImageField,
+        name: "Projeto 02",
+        description:
+          "Descrição curta do projeto — contexto, o que foi feito e o papel do seu trabalho.",
+      },
+    ],
+  },
+  visualIdentity: {
+    title: "Identidade Visual",
+    projects: [
+      { image: "" as ImageField, name: "Projeto 01", description: "Pequena descrição." },
+      { image: "" as ImageField, name: "Projeto 02", description: "Pequena descrição." },
+      { image: "" as ImageField, name: "Projeto 03", description: "Pequena descrição." },
+      { image: "" as ImageField, name: "Projeto 04", description: "Pequena descrição." },
+    ],
+  },
+};
+
+// ============================================================
+//  LANDING 02 — AUDIOVISUAL
+// ============================================================
+export const audiovisualContent = {
+  slug: "audiovisual" as const,
+  number: "02",
+  name: "Audiovisual",
+  intro:
+    "Curtas, filmes e vídeos para redes — direção e execução com atenção ao ritmo e à imagem.",
+  shorts: {
+    title: "Curtas",
+    description:
+      "Filmes curtos autorais e colaborativos. Clique na miniatura para assistir.",
+    items: [
+      {
+        thumbnail: "" as ImageField,
+        name: "Curta 01",
+        description: "Pequena descrição.",
+        href: "https://youtube.com" as LinkField,
+      },
+      {
+        thumbnail: "" as ImageField,
+        name: "Curta 02",
+        description: "Pequena descrição.",
+        href: "https://youtube.com" as LinkField,
+      },
+      {
+        thumbnail: "" as ImageField,
+        name: "Curta 03",
+        description: "Pequena descrição.",
+        href: "https://youtube.com" as LinkField,
+      },
+    ],
+  },
+  socialVideos: {
+    title: "Vídeos para Redes",
+    description:
+      "Uma pilha de vídeos feitos para redes sociais. Clique para expandir.",
+    items: [
+      { thumbnail: "" as ImageField, username: "@usuario", platform: "Instagram", href: "https://instagram.com" as LinkField },
+      { thumbnail: "" as ImageField, username: "@usuario", platform: "TikTok",    href: "https://tiktok.com"    as LinkField },
+      { thumbnail: "" as ImageField, username: "@usuario", platform: "Instagram", href: "https://instagram.com" as LinkField },
+      { thumbnail: "" as ImageField, username: "@usuario", platform: "YouTube",   href: "https://youtube.com"   as LinkField },
+      { thumbnail: "" as ImageField, username: "@usuario", platform: "TikTok",    href: "https://tiktok.com"    as LinkField },
+      { thumbnail: "" as ImageField, username: "@usuario", platform: "Instagram", href: "https://instagram.com" as LinkField },
+    ],
+  },
+};
+
+// ============================================================
+//  LANDING 03 — CRIAÇÃO
+// ============================================================
+export const criacaoContent = {
+  slug: "criacao" as const,
+  number: "03",
+  name: "Criação",
+  intro:
+    "Peças autorais, ensaios e projetos editoriais desenvolvidos ao longo da trajetória.",
+  photobook: {
+    title: "Photobook",
+    description:
+      "Um recorte visual — série de imagens organizadas como um pequeno livro.",
+    image: "" as ImageField,
+    href: "https://issuu.com" as LinkField,
+  },
+  editorial: {
+    title: "Projetos Editoriais",
+    projects: [
+      { image: "" as ImageField, name: "Projeto 01", description: "Pequena descrição." },
+      { image: "" as ImageField, name: "Projeto 02", description: "Pequena descrição." },
+      { image: "" as ImageField, name: "Projeto 03", description: "Pequena descrição." },
+      { image: "" as ImageField, name: "Projeto 04", description: "Pequena descrição." },
+    ],
+  },
+};
+
+// ============================================================
+//  LANDING 04 — ESTRATÉGIA
+// ============================================================
+export type StrategyCase = {
+  title: string;
+  blocks: {
+    contexto: string;
+    objetivo: string;
+    diagnostico: string;
+    direcionamento: string;
+    solucao: string;
+    impacto: string;
+  };
+};
+
+const emptyCase = (title: string): StrategyCase => ({
+  title,
+  blocks: {
+    contexto: "Descreva aqui o contexto do case.",
+    objetivo: "Descreva aqui o objetivo do projeto.",
+    diagnostico: "Descreva aqui o diagnóstico.",
+    direcionamento: "Descreva aqui o direcionamento estratégico.",
+    solucao: "Descreva aqui a solução aplicada.",
+    impacto: "Descreva aqui o impacto ou resultado.",
+  },
+});
+
+export const estrategiaContent = {
+  slug: "estrategia" as const,
+  number: "04",
+  name: "Estratégia",
+  intro:
+    "Estudos de caso — o processo por trás das decisões. Contexto, diagnóstico, solução e impacto.",
+  cases: [
+    emptyCase("Case 01"),
+    emptyCase("Case 02"),
+    emptyCase("Case 03"),
+  ],
+};

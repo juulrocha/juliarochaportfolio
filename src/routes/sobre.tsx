@@ -1,6 +1,7 @@
 import { createFileRoute } from "@tanstack/react-router";
 import { SiteNav } from "@/components/SiteNav";
 import { SiteFooter } from "@/components/SiteFooter";
+import { EditableImage } from "@/components/Placeholder";
 import { site } from "@/content/portfolio";
 
 export const Route = createFileRoute("/sobre")({
@@ -19,26 +20,28 @@ function Sobre() {
   return (
     <div className="min-h-screen bg-[color:var(--background)] text-[#1D1D1F]">
       <SiteNav />
-      <main className="px-6 pt-32 pb-24">
-        <div className="mx-auto grid max-w-5xl gap-12 md:grid-cols-[1fr_1.5fr] md:gap-20">
-          <div className="aspect-[4/5] overflow-hidden rounded-2xl bg-[color:var(--surface)]">
-            <img
-              src={site.heroImage}
-              alt={site.name}
-              loading="lazy"
-              width={1080}
-              height={1350}
-              className="h-full w-full object-cover"
+      <main className="px-6 pt-28 pb-24 md:pt-32">
+        <div className="mx-auto max-w-6xl">
+          {/* Banner horizontal */}
+          <div className="overflow-hidden">
+            <EditableImage
+              src={site.about.banner}
+              alt={site.about.title}
+              className="aspect-[21/9] w-full object-cover md:aspect-[24/8]"
             />
           </div>
-          <div>
-            <span className="mb-4 block font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
-              Sobre
-            </span>
-            <h1 className="mb-8 font-[family-name:var(--font-display)] text-5xl uppercase tracking-tight md:text-7xl">
-              {site.name}
-            </h1>
-            <div className="space-y-6 text-lg font-light leading-relaxed text-black/70">
+
+          {/* Texto abaixo do banner */}
+          <div className="mt-12 grid gap-10 md:mt-16 md:grid-cols-12 md:gap-16">
+            <div className="md:col-span-5">
+              <span className="mb-4 block font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
+                {site.about.eyebrow}
+              </span>
+              <h1 className="font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-tight md:text-6xl">
+                {site.about.title}
+              </h1>
+            </div>
+            <div className="space-y-6 font-[family-name:var(--font-editorial)] text-base leading-relaxed text-black/70 md:col-span-7 md:text-lg">
               {site.about.body.map((p, i) => (
                 <p key={i}>{p}</p>
               ))}
