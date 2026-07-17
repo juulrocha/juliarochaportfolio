@@ -1,21 +1,22 @@
 import { useEffect, useRef, useState } from "react";
 import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
-import { categories, type Category } from "@/content/portfolio";
+import { categories, type CategorySummary, PLACEHOLDER_IMAGE } from "@/content/portfolio";
 
-function CategoryCard({ category }: { category: Category }) {
+function CategoryCard({ category }: { category: CategorySummary }) {
+  const hasImage = category.cover && category.cover.length > 0;
   return (
     <Link
       to={`/${category.slug}`}
-      className="group relative block aspect-square w-[220px] shrink-0 overflow-hidden rounded-2xl bg-[color:var(--surface)] transition-all duration-500 hover:shadow-2xl hover:shadow-[color:var(--cobalt)]/30 sm:w-[280px] md:w-[340px]"
+      className="group relative block aspect-square w-[220px] shrink-0 overflow-hidden rounded-2xl bg-[color:var(--surface)] transition-transform duration-500 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-[color:var(--cobalt)]/25 sm:w-[280px] md:w-[340px]"
     >
       <img
-        src={category.cover}
+        src={hasImage ? category.cover : PLACEHOLDER_IMAGE}
         alt={category.name}
         loading="lazy"
         width={1024}
         height={1024}
-        className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 ease-out group-hover:scale-105"
+        className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--cobalt)] via-[color:var(--cobalt)]/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
       <div className="absolute inset-x-0 bottom-0 p-6 sm:p-8">
@@ -31,26 +32,23 @@ function CategoryCard({ category }: { category: Category }) {
 }
 
 export function CategoryMarquee() {
-  // Duplicate list so we can seamlessly loop by resetting scrollLeft.
+  // Lista duplicada para loop infinito.
   const loop = [...categories, ...categories];
   const scrollerRef = useRef<HTMLDivElement | null>(null);
   const [paused, setPaused] = useState(false);
   const pauseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
-  // Auto-scroll loop
   useEffect(() => {
     const el = scrollerRef.current;
     if (!el) return;
     let raf = 0;
-    const speed = 0.5; // px per frame
+    const speed = 0.5;
 
     const tick = () => {
       if (!paused && el) {
         const half = el.scrollWidth / 2;
         el.scrollLeft += speed;
-        if (el.scrollLeft >= half) {
-          el.scrollLeft -= half;
-        }
+        if (el.scrollLeft >= half) el.scrollLeft -= half;
       }
       raf = requestAnimationFrame(tick);
     };
@@ -68,8 +66,7 @@ export function CategoryMarquee() {
     const el = scrollerRef.current;
     if (!el) return;
     const card = el.querySelector<HTMLElement>("a");
-    const step = (card?.offsetWidth ?? 300) + 24; // gap-6
-    // Handle backwards wrap
+    const step = (card?.offsetWidth ?? 300) + 24;
     const half = el.scrollWidth / 2;
     if (dir === -1 && el.scrollLeft - step < 0) {
       el.scrollLeft += half;
@@ -89,16 +86,12 @@ export function CategoryMarquee() {
         </span>
       </div>
 
-      <div
-        className="group relative"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-      >
-        {/* Fades on the edges */}
+      <div className="relative">
+        {/* Fades laterais */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[color:var(--background)] to-transparent sm:w-24" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[color:var(--background)] to-transparent sm:w-24" />
 
-        {/* Arrows */}
+        {/* Setas */}
         <button
           type="button"
           aria-label="Anterior"
@@ -119,6 +112,8 @@ export function CategoryMarquee() {
         <div
           ref={scrollerRef}
           className="flex w-full gap-6 overflow-x-auto py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
           onTouchStart={pauseBriefly}
         >
           {loop.map((c, i) => (

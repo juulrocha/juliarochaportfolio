@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 800 600" preserveAspectRatio="xMidYMid slice">
+  <rect width="800" height="600" fill="#F0F0F2"/>
+  <g fill="none" stroke="#004AAD" stroke-opacity="0.25" stroke-width="1.5">
+    <line x1="0" y1="0" x2="800" y2="600"/>
+    <line x1="800" y1="0" x2="0" y2="600"/>
+    <rect x="0.75" y="0.75" width="798.5" height="598.5"/>
+  </g>
+  <g font-family="Archivo, system-ui, sans-serif" fill="#004AAD" fill-opacity="0.55">
+    <text x="24" y="40" font-size="14" letter-spacing="4">PLACEHOLDER</text>
+    <text x="24" y="576" font-size="12" letter-spacing="2">Clique para substituir a imagem</text>
+  </g>
+</svg>

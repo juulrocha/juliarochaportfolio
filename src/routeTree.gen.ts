@@ -10,9 +10,9 @@
 
 import { Route as rootRouteImport } from './routes/__root'
 import { Route as SobreRouteImport } from './routes/sobre'
-import { Route as LabRouteImport } from './routes/lab'
+import { Route as EstrategiaRouteImport } from './routes/estrategia'
+import { Route as CriacaoRouteImport } from './routes/criacao'
 import { Route as ContatoRouteImport } from './routes/contato'
-import { Route as ComunicacaoRouteImport } from './routes/comunicacao'
 import { Route as BrandingRouteImport } from './routes/branding'
 import { Route as AudiovisualRouteImport } from './routes/audiovisual'
 import { Route as IndexRouteImport } from './routes/index'
@@ -22,19 +22,19 @@ const SobreRoute = SobreRouteImport.update({
   path: '/sobre',
   getParentRoute: () => rootRouteImport,
 } as any)
-const LabRoute = LabRouteImport.update({
-  id: '/lab',
-  path: '/lab',
+const EstrategiaRoute = EstrategiaRouteImport.update({
+  id: '/estrategia',
+  path: '/estrategia',
+  getParentRoute: () => rootRouteImport,
+} as any)
+const CriacaoRoute = CriacaoRouteImport.update({
+  id: '/criacao',
+  path: '/criacao',
   getParentRoute: () => rootRouteImport,
 } as any)
 const ContatoRoute = ContatoRouteImport.update({
   id: '/contato',
   path: '/contato',
-  getParentRoute: () => rootRouteImport,
-} as any)
-const ComunicacaoRoute = ComunicacaoRouteImport.update({
-  id: '/comunicacao',
-  path: '/comunicacao',
   getParentRoute: () => rootRouteImport,
 } as any)
 const BrandingRoute = BrandingRouteImport.update({
@@ -57,18 +57,18 @@ export interface FileRoutesByFullPath {
   '/': typeof IndexRoute
   '/audiovisual': typeof AudiovisualRoute
   '/branding': typeof BrandingRoute
-  '/comunicacao': typeof ComunicacaoRoute
   '/contato': typeof ContatoRoute
-  '/lab': typeof LabRoute
+  '/criacao': typeof CriacaoRoute
+  '/estrategia': typeof EstrategiaRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesByTo {
   '/': typeof IndexRoute
   '/audiovisual': typeof AudiovisualRoute
   '/branding': typeof BrandingRoute
-  '/comunicacao': typeof ComunicacaoRoute
   '/contato': typeof ContatoRoute
-  '/lab': typeof LabRoute
+  '/criacao': typeof CriacaoRoute
+  '/estrategia': typeof EstrategiaRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRoutesById {
@@ -76,9 +76,9 @@ export interface FileRoutesById {
   '/': typeof IndexRoute
   '/audiovisual': typeof AudiovisualRoute
   '/branding': typeof BrandingRoute
-  '/comunicacao': typeof ComunicacaoRoute
   '/contato': typeof ContatoRoute
-  '/lab': typeof LabRoute
+  '/criacao': typeof CriacaoRoute
+  '/estrategia': typeof EstrategiaRoute
   '/sobre': typeof SobreRoute
 }
 export interface FileRouteTypes {
@@ -87,27 +87,27 @@ export interface FileRouteTypes {
     | '/'
     | '/audiovisual'
     | '/branding'
-    | '/comunicacao'
     | '/contato'
-    | '/lab'
+    | '/criacao'
+    | '/estrategia'
     | '/sobre'
   fileRoutesByTo: FileRoutesByTo
   to:
     | '/'
     | '/audiovisual'
     | '/branding'
-    | '/comunicacao'
     | '/contato'
-    | '/lab'
+    | '/criacao'
+    | '/estrategia'
     | '/sobre'
   id:
     | '__root__'
     | '/'
     | '/audiovisual'
     | '/branding'
-    | '/comunicacao'
     | '/contato'
-    | '/lab'
+    | '/criacao'
+    | '/estrategia'
     | '/sobre'
   fileRoutesById: FileRoutesById
 }
@@ -115,9 +115,9 @@ export interface RootRouteChildren {
   IndexRoute: typeof IndexRoute
   AudiovisualRoute: typeof AudiovisualRoute
   BrandingRoute: typeof BrandingRoute
-  ComunicacaoRoute: typeof ComunicacaoRoute
   ContatoRoute: typeof ContatoRoute
-  LabRoute: typeof LabRoute
+  CriacaoRoute: typeof CriacaoRoute
+  EstrategiaRoute: typeof EstrategiaRoute
   SobreRoute: typeof SobreRoute
 }
 
@@ -130,11 +130,18 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof SobreRouteImport
       parentRoute: typeof rootRouteImport
     }
-    '/lab': {
-      id: '/lab'
-      path: '/lab'
-      fullPath: '/lab'
-      preLoaderRoute: typeof LabRouteImport
+    '/estrategia': {
+      id: '/estrategia'
+      path: '/estrategia'
+      fullPath: '/estrategia'
+      preLoaderRoute: typeof EstrategiaRouteImport
+      parentRoute: typeof rootRouteImport
+    }
+    '/criacao': {
+      id: '/criacao'
+      path: '/criacao'
+      fullPath: '/criacao'
+      preLoaderRoute: typeof CriacaoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/contato': {
@@ -142,13 +149,6 @@ declare module '@tanstack/react-router' {
       path: '/contato'
       fullPath: '/contato'
       preLoaderRoute: typeof ContatoRouteImport
-      parentRoute: typeof rootRouteImport
-    }
-    '/comunicacao': {
-      id: '/comunicacao'
-      path: '/comunicacao'
-      fullPath: '/comunicacao'
-      preLoaderRoute: typeof ComunicacaoRouteImport
       parentRoute: typeof rootRouteImport
     }
     '/branding': {
@@ -179,9 +179,9 @@ const rootRouteChildren: RootRouteChildren = {
   IndexRoute: IndexRoute,
   AudiovisualRoute: AudiovisualRoute,
   BrandingRoute: BrandingRoute,
-  ComunicacaoRoute: ComunicacaoRoute,
   ContatoRoute: ContatoRoute,
-  LabRoute: LabRoute,
+  CriacaoRoute: CriacaoRoute,
+  EstrategiaRoute: EstrategiaRoute,
   SobreRoute: SobreRoute,
 }
 export const routeTree = rootRouteImport
