@@ -7,7 +7,7 @@ function CategoryCard({ category }: { category: CategorySummary }) {
   const hasImage = category.cover && category.cover.length > 0;
   return (
     <Link
-      to={`/${category.slug}` as string}
+      to={`/${category.slug}`}
       className="group relative block aspect-square w-[220px] shrink-0 overflow-hidden rounded-2xl bg-[color:var(--surface)] transition-transform duration-500 ease-out hover:scale-[1.03] hover:shadow-2xl hover:shadow-[color:var(--cobalt)]/25 sm:w-[280px] md:w-[340px]"
     >
       <img
