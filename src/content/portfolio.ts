@@ -155,7 +155,7 @@ export const criacaoContent = {
     title: "Narrativa Editorial",
     description:
       "Um recorte visual — série de imagens organizadas como um pequeno livro.",
-    image: "" as ImageField,
+    image: "https://postimg.cc/7bx4p9Y8" as ImageField,
     href: "https://online.fliphtml5.com/fxjcb/rine/#p=1" as LinkField,
   },
   editorial: {
