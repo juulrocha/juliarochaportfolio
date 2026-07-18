@@ -20,10 +20,15 @@ function Index() {
           <div className="mx-auto max-w-4xl py-10 text-center md:py-20">
             <h1 className="font-[family-name:var(--font-display)] text-6xl uppercase leading-[0.9] tracking-tight sm:text-8xl md:text-9xl">
               JÚLIA
-              <span className="inline-block w-[0.35em]" aria-hidden />
+              <h1 className="font-[family-name:var(--font-display)] text-6x1 uppercase leading-[0.9] tracking-tight sm:text-8x1 md:text-9x1">
+  JÚLIA
+  <br />
+  <span>ROCHA</span>
+</h1>
+
               <span className="text-[color:var(--cobalt)]">ROCHA</span>
             </h1>
-            <p className="mx-auto mt-6 max-w-md text-base font-light leading-relaxed text-black/60 sm:text-lg">
+            <p className="mx-auto mt-6 max-w-md text-base font-light leading-relaxed text-black/60 sm:text-lg whitespace-pre-line">
               {site.tagline}
             </p>
             <p className="mx-auto mt-3 max-w-md text-sm font-light leading-relaxed text-black/50">
