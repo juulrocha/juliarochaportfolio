@@ -16,9 +16,9 @@ export const site = {
   name: "JÚLIA ROCHA",
   tagline: "Branding • Criação • Comunicação",
   headline: "JÚLIA ROCHA",
-  subheadline: "Uma seleção de projetos que vêm construindo a minha forma de pensar comunicação.",
+  subheadline: "Uma seleção de projetos que vêm construindo minha forma de pensar comunicação.",
   about: {
-    eyebrow: "Sobre mim",
+    eyebrow: "Sobre",
     title: "Júlia Rocha",
     banner: "" as ImageField, // banner horizontal editável
     body: [
