@@ -23,9 +23,11 @@ function Index() {
             <div className="text-[color:var(--cobalt)]">ROCHA</div>
           </h1>
 
-            <p className="mx-auto mt-6 max-w-md text-base font-light leading-relaxed text-black/60 sm:text-lg whitespace-pre-line">
-              {site.tagline}
-            </p>
+                      <p className="mx-auto mt-6 max-w-xl text-base font-light leading-relaxed text-black/60 sm:text-lg text-center">
+            Uma seleção de projetos que vêm construindo
+            <span className="block">minha forma de pensar comunicação.</span>
+          </p>
+
             <p className="mx-auto mt-3 max-w-md text-sm font-light leading-relaxed text-black/50">
               {site.subheadline}
             </p>
