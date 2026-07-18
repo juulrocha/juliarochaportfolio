@@ -22,7 +22,7 @@ export const site = {
     title: "Júlia Rocha",
     banner: "" as ImageField, // banner horizontal editável
     body: [
-      "Escreva aqui um parágrafo curto sobre você — sua trajetória, formação e áreas de interesse.",
+      "Escreva aqui um parágrafo curto sobre você teste — sua trajetória, formação e áreas de interesse.",
       "Um segundo parágrafo pode aprofundar sua forma de pensar, referências e como você organiza os projetos.",
     ],
   },
