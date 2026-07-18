@@ -16,8 +16,7 @@ export const site = {
   name: "JÚLIA ROCHA",
   tagline: "Branding • Criação • Comunicação",
   headline: "JÚLIA ROCHA",
-  subheadline: `Uma seleção de projetos que vêm construindo
-minha forma de pensar comunicação.`,
+  subheadline: "Uma seleção de projetos que vêm construindo minha forma de pensar comunicação.",
   about: {
     eyebrow: "Sobre",
     title: "Júlia Rocha",
@@ -53,7 +52,7 @@ export type CategorySummary = {
 export const categories: CategorySummary[] = [
   { slug: "branding",    number: "01", name: "Branding",    cover: "" },
   { slug: "audiovisual", number: "02", name: "Audiovisual", cover: "" },
-  { slug: "criacao",     number: "03", name: "Criação",     cover: "https://i.postimg.cc/3rGw0fsR/Whats-App-Image-2026-07-17-at-22-36-40.jpg" },
+  { slug: "design & conteúdo",     number: "03", name: "Criação",     cover: "https://i.postimg.cc/3rGw0fsR/Whats-App-Image-2026-07-17-at-22-36-40.jpg" },
   { slug: "estrategia",  number: "04", name: "Estratégia",  cover: "" },
 ];
 
@@ -153,14 +152,14 @@ export const criacaoContent = {
   intro:
     "Peças autorais, ensaios e projetos editoriais desenvolvidos ao longo da trajetória.",
   photobook: {
-    title: "Photobook",
+    title: "Narrativa Editorial",
     description:
       "Um recorte visual — série de imagens organizadas como um pequeno livro.",
     image: "" as ImageField,
     href: "https://issuu.com" as LinkField,
   },
   editorial: {
-    title: "Projetos Editoriais",
+    title: "Conteúdo para Redes",
     projects: [
       { image: "" as ImageField, name: "Projeto 01", description: "Pequena descrição." },
       { image: "" as ImageField, name: "Projeto 02", description: "Pequena descrição." },
