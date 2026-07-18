@@ -52,7 +52,7 @@ export type CategorySummary = {
 export const categories: CategorySummary[] = [
   { slug: "branding",    number: "01", name: "Branding",    cover: "" },
   { slug: "audiovisual", number: "02", name: "Audiovisual", cover: "" },
-  { slug: "criacao",     number: "03", name: "Criação",     cover: "" },
+  { slug: "criacao",     number: "03", name: "Criação",     cover: "https://i.postimg.cc/3rGw0fsR/Whats-App-Image-2026-07-17-at-22-36-40.jpg" },
   { slug: "estrategia",  number: "04", name: "Estratégia",  cover: "" },
 ];
 
