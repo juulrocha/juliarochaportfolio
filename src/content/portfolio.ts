@@ -41,7 +41,7 @@ minha forma de pensar comunicação.`,
 };
 
 // -------------------- RESUMO DAS CATEGORIAS (usado no carrossel da home) --------------------
-export type CategorySlug = "branding" | "audiovisual" | "criacao" | "estrategia";
+export type CategorySlug = "branding" | "audiovisual" | "design & conteúdo" | "estrategia";
 
 export type CategorySummary = {
   slug: CategorySlug;
