@@ -156,7 +156,7 @@ export const criacaoContent = {
     description:
       "Um recorte visual — série de imagens organizadas como um pequeno livro.",
     image: "" as ImageField,
-    href: "https://issuu.com" as LinkField,
+    href: "https://online.fliphtml5.com/fxjcb/rine/#p=1" as LinkField,
   },
   editorial: {
     title: "Conteúdo para Redes",
