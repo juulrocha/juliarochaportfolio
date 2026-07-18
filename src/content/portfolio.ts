@@ -16,7 +16,8 @@ export const site = {
   name: "JÚLIA ROCHA",
   tagline: "Branding • Criação • Comunicação",
   headline: "JÚLIA ROCHA",
-  subheadline: "subtítulo: "Uma seleção de projetos que vêm construindo\nminha forma de pensar comunicação.",
+  subheadline: "subtítulo: subtítulo: `Uma seleção de projetos que vêm construindo
+minha forma de pensar comunicação.`,
   about: {
     eyebrow: "Sobre",
     title: "Júlia Rocha",
