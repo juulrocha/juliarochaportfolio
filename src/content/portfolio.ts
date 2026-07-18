@@ -143,7 +143,7 @@ export const audiovisualContent = {
 };
 
 // ============================================================
-//  LANDING 03 — CRIAÇÃO
+//  LANDING 03 — DESIGN & CONTEÚDO
 // ============================================================
 export const criacaoContent = {
   slug: "Design & Conteúdo" as const,
