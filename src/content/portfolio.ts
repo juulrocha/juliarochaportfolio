@@ -149,7 +149,7 @@ export const audiovisualContent = {
 export const criacaoContent = {
   slug: "criacao" as const,
   number: "03",
-  name: "Criação",
+  name: "Design & Conteúdo",
   intro:
     "Peças autorais, ensaios e projetos editoriais desenvolvidos ao longo da trajetória.",
   photobook: {
