@@ -26,10 +26,6 @@ function CategoryCard({ category }: { category: CategorySummary }) {
         <h3 className="text-xl font-extrabold tracking-tight text-white sm:text-2xl">
           {category.name}
         </h3>
-                  <span className="text-xs font-semibold tracking-wider text-white/80 mt-2 block uppercase text-left">
-            COMECE AQUI
-          </span>
-
       </div>
     </Link>
   );
