@@ -147,7 +147,7 @@ export const audiovisualContent = {
 //  LANDING 03 — CRIAÇÃO
 // ============================================================
 export const criacaoContent = {
-  slug: "criacao" as const,
+  slug: "Design & Conteúdo" as const,
   number: "03",
   name: "Design & Conteúdo",
   intro:
