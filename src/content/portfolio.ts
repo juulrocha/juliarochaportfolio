@@ -14,7 +14,7 @@ export type LinkField = string;  // URL absoluta
 // -------------------- DADOS GERAIS DO SITE --------------------
 export const site = {
   name: "JÚLIA 
-    ROCHA",
+  ROCHA",
   tagline: "Branding • Criação • Comunicação",
   headline: "JÚLIA ROCHA",
   subheadline: "Uma seleção de projetos que vêm construindo minha forma de pensar comunicação.",
