@@ -27,10 +27,6 @@ function Index() {
             Uma seleção de projetos que vêm construindo
             <span className="block">minha forma de pensar comunicação.</span>
           </p>
-
-            <p className="mx-auto mt-3 max-w-md text-sm font-light leading-relaxed text-black/50">
-              {site.subheadline}
-            </p>
           </div>
 
           {/* Seta lateral (apenas mobile) */}
