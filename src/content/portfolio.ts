@@ -40,7 +40,7 @@ export const site = {
 };
 
 // -------------------- RESUMO DAS CATEGORIAS (usado no carrossel da home) --------------------
-export type CategorySlug = "branding" | "audiovisual" | "design & conteúdo" | "estrategia";
+export type CategorySlug = "branding" | "audiovisual" | "design & conteudo" | "estrategia";
 
 export type CategorySummary = {
   slug: CategorySlug;
@@ -52,7 +52,7 @@ export type CategorySummary = {
 export const categories: CategorySummary[] = [
   { slug: "branding",    number: "01", name: "Branding",    cover: "" },
   { slug: "audiovisual", number: "02", name: "Audiovisual", cover: "" },
-  { slug: "design & conteúdo",     number: "03", name: "Criação",     cover: "https://i.postimg.cc/3rGw0fsR/Whats-App-Image-2026-07-17-at-22-36-40.jpg" },
+  { slug: "design & conteudo",     number: "03", name: "Design & Conteúdo",     cover: "https://i.postimg.cc/3rGw0fsR/Whats-App-Image-2026-07-17-at-22-36-40.jpg" },
   { slug: "estrategia",  number: "04", name: "Estratégia",  cover: "" },
 ];
 
