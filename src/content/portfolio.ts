@@ -83,7 +83,7 @@ export const brandingContent = {
     ],
   },
   visualIdentity: {
-    title: "Identidade Visual",
+    title: "Sistema de Marca",
     projects: [
       { image: "" as ImageField, name: "Projeto 01", description: "Pequena descrição." },
       { image: "" as ImageField, name: "Projeto 02", description: "Pequena descrição." },
