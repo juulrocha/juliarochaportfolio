@@ -84,7 +84,7 @@ function SocialStack({ items }: { items: SocialItem[] }) {
           return (
             <div
               key={i}
-              className="absolute left-1/2 top-0 aspect-[9/16] w-[220px] -translate-x-1/2 overflow-hidden bg-white shadow-xl ring-1 ring-black/5 transition-all duration-500 group-hover:shadow-2xl"
+              className="absolute left-1/2 top-0 aspect-[9/16] w-[200px] -translate-x-1/2 overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-black/5 transition-all duration-700 ease-out group-hover:shadow-2xl sm:w-[220px]"
               style={{
                 transform: `translate(-50%, ${offset}px) rotate(${rot}deg)`,
                 zIndex: items.length - i,
@@ -93,7 +93,7 @@ function SocialStack({ items }: { items: SocialItem[] }) {
               <EditableImage
                 src={v.thumbnail}
                 alt={v.username}
-                className="h-full w-full object-cover"
+                className="h-full w-full rounded-2xl object-cover"
               />
             </div>
           );
@@ -107,7 +107,7 @@ function SocialStack({ items }: { items: SocialItem[] }) {
 
   return (
     <div>
-      <div className="grid animate-in fade-in gap-6 duration-500 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid animate-in grid-cols-3 gap-3 fade-in duration-700 ease-out sm:gap-6">
         {items.map((v, i) => (
           <a
             key={i}
@@ -116,18 +116,18 @@ function SocialStack({ items }: { items: SocialItem[] }) {
             rel="noopener noreferrer"
             className="group block"
           >
-            <div className="overflow-hidden bg-white shadow-md ring-1 ring-black/5">
+            <div className="overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-xl">
               <EditableImage
                 src={v.thumbnail}
                 alt={v.username}
-                className="aspect-[9/16] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                className="aspect-[9/16] w-full rounded-2xl object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               />
             </div>
             <div className="mt-3">
-              <div className="font-[family-name:var(--font-display)] text-sm uppercase tracking-tight transition-colors group-hover:text-[color:var(--cobalt)]">
+              <div className="font-[family-name:var(--font-display)] text-xs uppercase leading-tight tracking-tight transition-colors group-hover:text-[color:var(--cobalt)] sm:text-sm">
                 {v.username}
               </div>
-              <div className="mt-0.5 font-mono text-xs uppercase tracking-widest text-black/50">
+              <div className="mt-0.5 font-mono text-[10px] uppercase tracking-widest text-black/50 sm:text-xs">
                 {v.platform}
               </div>
             </div>
@@ -146,3 +146,4 @@ function SocialStack({ items }: { items: SocialItem[] }) {
     </div>
   );
 }
+
