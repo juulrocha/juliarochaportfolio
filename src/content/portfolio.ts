@@ -21,17 +21,15 @@ export const site = {
     eyebrow: "Sobre",
     title: "Júlia Rocha",
     banner: "" as ImageField, // banner horizontal editável
-    body: [
-      "É difícil me colocar em uma área só. E, sinceramente, eu gosto assim."
-
-"Publicidade acabou virando o lugar onde eu consigo juntar algumas das coisas que mais me interessam: criar, observar, pesquisar, organizar ideias e entender por que certas coisas fazem sentido para as pessoas. No meio disso, fui construindo experiência em branding, direção criativa, design, audiovisual e estratégia, de projetos acadêmicos a trabalhos desenvolvidos para marcas e clientes reais."
-
-"Gosto especialmente da parte em que uma ideia ainda não está pronta. Pensar o conceito, encontrar a direção, testar possibilidades e transformar tudo isso em alguma coisa que funcione de verdade.",
-      "Hoje, estudo Publicidade e Propaganda e sigo construindo meu repertório entre projetos, referências e muita curiosidade. Também comecei a levar essa vontade de criar para o conteúdo, compartilhando um pouco dos meus interesses, experiências, hobbies e, vez ou outra, alguma ideia que achei boa demais para ficar só na minha cabeça."
-
-"Esse espaço reúne um pouco disso tudo."
-  "Quer conhecer um pouco mais do que faço? Vamos conversar.",
+    body: 
+      "É difícil me colocar em uma área só. E, sinceramente, eu gosto assim.",
+      "Publicidade acabou virando o lugar onde eu consigo juntar algumas das coisas que mais me interessam: criar, observar, pesquisar, organizar ideias e entender por que certas coisas fazem sentido para as pessoas. No meio disso, fui construindo experiência em branding, direção criativa, design, audiovisual e estratégia, de projetos acadêmicos a trabalhos desenvolvidos para marcas e clientes reais.",
+      "Gosto especialmente da parte em que uma ideia ainda não está pronta. Pensar o conceito, encontrar a direção, testar possibilidades e transformar tudo isso em alguma coisa que funcione de verdade.",
+      "Hoje, estudo Publicidade e Propaganda e sigo construindo meu repertório entre projetos, referências e muita curiosidade. Também comecei a levar essa vontade de criar para o conteúdo, compartilhando um pouco dos meus interesses, experiências, hobbies e, vez ou outra, alguma ideia que achei boa demais para ficar só na minha cabeça.",
+      "Esse espaço reúne um pouco disso tudo.",
+      "Quer conhecer um pouco mais do que faço? Vamos conversar.",
     ],
+
     // ÚNICO local para trocar o link do currículo:
     resumeUrl: "#" as LinkField,
     resumeLabel: "Currículo",
