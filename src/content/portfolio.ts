@@ -25,7 +25,24 @@ export const site = {
       "Escreva aqui um parágrafo curto sobre você teste — sua trajetória, formação e áreas de interesse.",
       "Um segundo parágrafo pode aprofundar sua forma de pensar, referências e como você organiza os projetos.",
     ],
+    // ÚNICO local para trocar o link do currículo:
+    resumeUrl: "#" as LinkField,
+    resumeLabel: "Currículo",
+    // Logos das ferramentas — cada `logo` é editável/substituível.
+    tools: [
+      { name: "Adobe Photoshop", logo: "https://cdn.simpleicons.org/adobephotoshop" as ImageField },
+      { name: "Adobe Illustrator", logo: "https://cdn.simpleicons.org/adobeillustrator" as ImageField },
+      { name: "Adobe Premiere Pro", logo: "https://cdn.simpleicons.org/adobepremierepro" as ImageField },
+      { name: "Canva", logo: "https://cdn.simpleicons.org/canva" as ImageField },
+      { name: "Figma", logo: "https://cdn.simpleicons.org/figma" as ImageField },
+      { name: "CapCut", logo: "https://cdn.simpleicons.org/capcut" as ImageField },
+      { name: "Adobe Creative Cloud", logo: "https://cdn.simpleicons.org/adobecreativecloud" as ImageField },
+      { name: "Claude", logo: "https://cdn.simpleicons.org/claude" as ImageField },
+      { name: "ChatGPT", logo: "https://cdn.simpleicons.org/openai" as ImageField },
+      { name: "Microsoft Office", logo: "https://cdn.simpleicons.org/microsoftoffice" as ImageField },
+    ],
   },
+
   contact: {
     email: "ajuulrocha@email.com",
     location: "Diadema • São Paulo • Brasil",
