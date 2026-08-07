@@ -40,7 +40,7 @@ export const site = {
 };
 
 // -------------------- RESUMO DAS CATEGORIAS (usado no carrossel da home) --------------------
-export type CategorySlug = "branding" | "audiovisual" | "design & conteudo" | "estrategia";
+export type CategorySlug = "branding" | "audiovisual" | "criacao" | "estrategia";
 
 export type CategorySummary = {
   slug: CategorySlug;
