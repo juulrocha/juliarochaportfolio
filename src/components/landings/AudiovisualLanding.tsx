@@ -76,7 +76,7 @@ function SocialStack({ items }: { items: SocialItem[] }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Expandir vídeos"
-        className="group relative mx-auto block h-[360px] w-full max-w-sm"
+        className="group relative mx-auto block h-[420px] w-full max-w-sm sm:h-[450px]"
       >
         {items.slice(0, 4).map((v, i) => {
           const offset = i * 10;
@@ -98,11 +98,12 @@ function SocialStack({ items }: { items: SocialItem[] }) {
             </div>
           );
         })}
-        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-8 font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
+        <span className="absolute bottom-0 left-0 w-full text-center font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
           Clique para expandir
         </span>
       </button>
     );
+
   }
 
   return (
