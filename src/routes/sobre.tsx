@@ -23,11 +23,11 @@ function Sobre() {
       <main className="px-6 pt-28 pb-24 md:pt-32">
         <div className="mx-auto max-w-6xl">
           {/* Banner horizontal */}
-          <div className="overflow-hidden">
+          <div className="overflow-hidden rounded-2xl">
             <EditableImage
               src={site.about.banner}
               alt={site.about.title}
-              className="aspect-[21/9] w-full object-cover md:aspect-[24/8]"
+              className="aspect-[21/9] w-full rounded-2xl object-cover md:aspect-[24/8]"
             />
           </div>
 
@@ -47,6 +47,38 @@ function Sobre() {
               ))}
             </div>
           </div>
+
+          {/* Bloco complementar — ferramentas + currículo */}
+          <div className="mt-20 flex flex-col items-start gap-8 border-t border-black/10 pt-10 md:mt-24 md:flex-row md:items-center md:justify-between">
+            <div className="flex flex-wrap items-center gap-3 sm:gap-4">
+              {site.about.tools.map((t) => (
+                <span
+                  key={t.name}
+                  title={t.name}
+                  className="grid size-11 place-items-center rounded-full bg-white ring-1 ring-black/10 transition-transform duration-300 ease-out hover:scale-105"
+                >
+                  <img
+                    src={t.logo}
+                    alt={t.name}
+                    loading="lazy"
+                    width={24}
+                    height={24}
+                    className="size-5 object-contain"
+                  />
+                </span>
+              ))}
+            </div>
+
+            <a
+              href={site.about.resumeUrl}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="shrink-0 rounded-full bg-[color:var(--cobalt)] px-6 py-3 font-mono text-xs uppercase tracking-widest text-white transition-all duration-300 hover:opacity-90"
+            >
+              {site.about.resumeLabel}
+            </a>
+          </div>
+
         </div>
       </main>
       <SiteFooter />

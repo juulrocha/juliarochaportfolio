@@ -25,7 +25,25 @@ export const site = {
       "Escreva aqui um parágrafo curto sobre você teste — sua trajetória, formação e áreas de interesse.",
       "Um segundo parágrafo pode aprofundar sua forma de pensar, referências e como você organiza os projetos.",
     ],
+    // ÚNICO local para trocar o link do currículo:
+    resumeUrl: "#" as LinkField,
+    resumeLabel: "Currículo",
+    // Logos das ferramentas — cada `logo` é editável/substituível.
+    tools: [
+      { name: "Adobe Photoshop", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/adobephotoshop.svg" as ImageField },
+      { name: "Adobe Illustrator", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/adobeillustrator.svg" as ImageField },
+      { name: "Adobe Premiere Pro", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/adobepremierepro.svg" as ImageField },
+      { name: "Canva", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/canva.svg" as ImageField },
+      { name: "Figma", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/figma.svg" as ImageField },
+      { name: "CapCut", logo: "/logos/capcut.svg" as ImageField },
+      { name: "Adobe Creative Cloud", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/adobecreativecloud.svg" as ImageField },
+      { name: "Claude", logo: "https://cdn.jsdelivr.net/npm/simple-icons@13/icons/claude.svg" as ImageField },
+      { name: "ChatGPT", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/openai.svg" as ImageField },
+      { name: "Microsoft Office", logo: "https://cdn.jsdelivr.net/npm/simple-icons@9/icons/microsoftoffice.svg" as ImageField },
+    ],
+
   },
+
   contact: {
     email: "ajuulrocha@email.com",
     location: "Diadema • São Paulo • Brasil",
@@ -40,7 +58,7 @@ export const site = {
 };
 
 // -------------------- RESUMO DAS CATEGORIAS (usado no carrossel da home) --------------------
-export type CategorySlug = "branding" | "audiovisual" | "design & conteudo" | "estrategia";
+export type CategorySlug = "branding" | "audiovisual" | "criacao" | "estrategia";
 
 export type CategorySummary = {
   slug: CategorySlug;

@@ -19,7 +19,7 @@ export function AudiovisualLanding() {
           {c.shorts.description}
         </p>
 
-        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-3 gap-x-3 gap-y-8 sm:gap-x-6 sm:gap-y-12">
           {c.shorts.items.map((v, i) => (
             <a
               key={i}
@@ -28,19 +28,21 @@ export function AudiovisualLanding() {
               rel="noopener noreferrer"
               className="group block"
             >
-              <div className="overflow-hidden">
+              <div className="overflow-hidden rounded-2xl">
                 <EditableImage
                   src={v.thumbnail}
                   alt={v.name}
-                  className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="aspect-video w-full rounded-2xl object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
               </div>
-              <h3 className="mt-3 font-[family-name:var(--font-display)] text-base uppercase tracking-tight transition-colors group-hover:text-[color:var(--cobalt)]">
+
+              <h3 className="mt-3 font-[family-name:var(--font-display)] text-xs uppercase leading-tight tracking-tight transition-colors group-hover:text-[color:var(--cobalt)] sm:text-base">
                 {v.name}
               </h3>
-              <p className="mt-1 font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
+              <p className="mt-1 font-[family-name:var(--font-editorial)] text-[11px] leading-snug text-black/60 sm:text-sm sm:leading-relaxed">
                 {v.description}
               </p>
+
             </a>
           ))}
         </div>
@@ -74,7 +76,7 @@ function SocialStack({ items }: { items: SocialItem[] }) {
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Expandir vídeos"
-        className="group relative mx-auto block h-[360px] w-full max-w-sm"
+        className="group relative mx-auto block h-[420px] w-full max-w-sm sm:h-[450px]"
       >
         {items.slice(0, 4).map((v, i) => {
           const offset = i * 10;
@@ -82,7 +84,7 @@ function SocialStack({ items }: { items: SocialItem[] }) {
           return (
             <div
               key={i}
-              className="absolute left-1/2 top-0 aspect-[9/16] w-[220px] -translate-x-1/2 overflow-hidden bg-white shadow-xl ring-1 ring-black/5 transition-all duration-500 group-hover:shadow-2xl"
+              className="absolute left-1/2 top-0 aspect-[9/16] w-[200px] -translate-x-1/2 overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-black/5 transition-all duration-700 ease-out group-hover:shadow-2xl sm:w-[220px]"
               style={{
                 transform: `translate(-50%, ${offset}px) rotate(${rot}deg)`,
                 zIndex: items.length - i,
@@ -91,21 +93,22 @@ function SocialStack({ items }: { items: SocialItem[] }) {
               <EditableImage
                 src={v.thumbnail}
                 alt={v.username}
-                className="h-full w-full object-cover"
+                className="h-full w-full rounded-2xl object-cover"
               />
             </div>
           );
         })}
-        <span className="absolute bottom-0 left-1/2 -translate-x-1/2 translate-y-8 font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
+        <span className="absolute bottom-0 left-0 w-full text-center font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
           Clique para expandir
         </span>
       </button>
     );
+
   }
 
   return (
     <div>
-      <div className="grid animate-in fade-in gap-6 duration-500 sm:grid-cols-2 md:grid-cols-3">
+      <div className="grid animate-in grid-cols-3 gap-3 fade-in duration-700 ease-out sm:gap-6">
         {items.map((v, i) => (
           <a
             key={i}
@@ -114,18 +117,18 @@ function SocialStack({ items }: { items: SocialItem[] }) {
             rel="noopener noreferrer"
             className="group block"
           >
-            <div className="overflow-hidden bg-white shadow-md ring-1 ring-black/5">
+            <div className="overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-xl">
               <EditableImage
                 src={v.thumbnail}
                 alt={v.username}
-                className="aspect-[9/16] w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                className="aspect-[9/16] w-full rounded-2xl object-cover transition-transform duration-700 ease-out group-hover:scale-[1.04]"
               />
             </div>
             <div className="mt-3">
-              <div className="font-[family-name:var(--font-display)] text-sm uppercase tracking-tight transition-colors group-hover:text-[color:var(--cobalt)]">
+              <div className="font-[family-name:var(--font-display)] text-xs uppercase leading-tight tracking-tight transition-colors group-hover:text-[color:var(--cobalt)] sm:text-sm">
                 {v.username}
               </div>
-              <div className="mt-0.5 font-mono text-xs uppercase tracking-widest text-black/50">
+              <div className="mt-0.5 font-mono text-[10px] uppercase tracking-widest text-black/50 sm:text-xs">
                 {v.platform}
               </div>
             </div>
@@ -144,3 +147,4 @@ function SocialStack({ items }: { items: SocialItem[] }) {
     </div>
   );
 }
+
