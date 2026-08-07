@@ -1,4 +1,5 @@
 import { PLACEHOLDER_IMAGE } from "@/content/portfolio";
+import { cn } from "@/lib/utils";
 
 type Props = {
   src?: string;
@@ -12,6 +13,7 @@ type Props = {
  * Imagem editável com fallback para placeholder.
  * Sempre renderiza um <img>, para que o editor visual do Lovable
  * permita substituir a imagem sem tocar em código.
+ * O arredondamento padrão é o mesmo em todo o site.
  */
 export function EditableImage({ src, alt = "", className, width, height }: Props) {
   const source = src && src.length > 0 ? src : PLACEHOLDER_IMAGE;
@@ -22,7 +24,8 @@ export function EditableImage({ src, alt = "", className, width, height }: Props
       loading="lazy"
       width={width}
       height={height}
-      className={className}
+      className={cn("rounded-2xl", className)}
     />
   );
 }
+
