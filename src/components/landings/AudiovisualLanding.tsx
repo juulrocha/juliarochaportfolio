@@ -19,7 +19,7 @@ export function AudiovisualLanding() {
           {c.shorts.description}
         </p>
 
-        <div className="grid gap-x-6 gap-y-12 sm:grid-cols-2 lg:grid-cols-3">
+        <div className="grid grid-cols-3 gap-x-3 gap-y-8 sm:gap-x-6 sm:gap-y-12">
           {c.shorts.items.map((v, i) => (
             <a
               key={i}
@@ -28,13 +28,14 @@ export function AudiovisualLanding() {
               rel="noopener noreferrer"
               className="group block"
             >
-              <div className="overflow-hidden">
+              <div className="overflow-hidden rounded-2xl">
                 <EditableImage
                   src={v.thumbnail}
                   alt={v.name}
-                  className="aspect-video w-full object-cover transition-transform duration-500 group-hover:scale-[1.02]"
+                  className="aspect-video w-full rounded-2xl object-cover transition-transform duration-500 ease-out group-hover:scale-[1.03]"
                 />
               </div>
+
               <h3 className="mt-3 font-[family-name:var(--font-display)] text-base uppercase tracking-tight transition-colors group-hover:text-[color:var(--cobalt)]">
                 {v.name}
               </h3>
