@@ -20,7 +20,7 @@ export function CriacaoLanding() {
           rel="noopener noreferrer"
           className="group block"
         >
-          <div className="overflow-hidden">
+          <div className="overflow-hidden rounded-2xl">
             <EditableImage
               src={c.photobook.image}
               alt={c.photobook.title}
