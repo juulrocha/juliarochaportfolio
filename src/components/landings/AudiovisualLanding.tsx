@@ -36,12 +36,13 @@ export function AudiovisualLanding() {
                 />
               </div>
 
-              <h3 className="mt-3 font-[family-name:var(--font-display)] text-base uppercase tracking-tight transition-colors group-hover:text-[color:var(--cobalt)]">
+              <h3 className="mt-3 font-[family-name:var(--font-display)] text-xs uppercase leading-tight tracking-tight transition-colors group-hover:text-[color:var(--cobalt)] sm:text-base">
                 {v.name}
               </h3>
-              <p className="mt-1 font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
+              <p className="mt-1 font-[family-name:var(--font-editorial)] text-[11px] leading-snug text-black/60 sm:text-sm sm:leading-relaxed">
                 {v.description}
               </p>
+
             </a>
           ))}
         </div>
