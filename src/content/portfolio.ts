@@ -81,6 +81,17 @@ export const categories: CategorySummary[] = [
 // ============================================================
 //  LANDING 01 — BRANDING
 // ============================================================
+
+// Projeto usado tanto em "Construção de Marca" quanto em "Sistema de Marca".
+// `href` é opcional: quando presente, a imagem do card vira um link clicável
+// (abre em nova aba). Quando ausente, o card fica só decorativo.
+export type BrandProject = {
+  image: ImageField;
+  name: string;
+  description: string;
+  href?: LinkField;
+};
+
 export const brandingContent = {
   slug: "branding" as const,
   number: "01",
@@ -91,27 +102,52 @@ export const brandingContent = {
     title: "Construção de Marca",
     projects: [
       {
-        image: "" as ImageField,
-        name: "Projeto 01",
+        image: "https://i.postimg.cc/MTf6rzpn/Eunianas.png",
+        name: "EUNIA™",
         description:
-          "Descrição curta do projeto — contexto, o que foi feito e o papel do seu trabalho.",
+          "Da agência experimental criada por estudantes de Publicidade à construção de uma marca de comunicação especializada em Geração Z. O processo passou por diagnóstico, posicionamento, território cultural, personalidade e sistema verbal, sustentando uma identidade pensada para deixar de ser projeto acadêmico e operar como empresa. O nome carrega a ideia de reunião: identidades, culturas e pessoas que se reconhecem umas nas outras. O amarelo reforça essa energia com otimismo, inteligência e um toque de urgência, quase um aviso para prestar atenção. O ícone de movimento contínuo lembra que identidade não é estática, ela vive em transformação.",
+        href: "https://linktr.ee/agenciaeunia",
       },
       {
-        image: "" as ImageField,
-        name: "Projeto 02",
+        image: "https://i.postimg.cc/9fMZ0wJG/Agen-PRO.png",
+        name: "AgenPRO®",
         description:
-          "Descrição curta do projeto — contexto, o que foi feito e o papel do seu trabalho.",
+          "Reposicionamento de uma agência de marketing digital, migrando de um discurso genérico para uma proposta voltada a negócios que querem crescer com propósito. O estudo de público mapeou diferentes perfis, do empresário em expansão ao head de marketing, sustentando um tom de voz humano, visionário e direto. O teal entra como cor de tecnologia e movimento, e o ícone circular ao lado do nome reforça a ideia de conexão contínua entre estratégia e execução.",
+        href: "https://heyzine.com/flip-book/1439b4177b.html",
       },
-    ],
+    ] as BrandProject[],
   },
   visualIdentity: {
     title: "Sistema de Marca",
     projects: [
-      { image: "" as ImageField, name: "Projeto 01", description: "Pequena descrição." },
-      { image: "" as ImageField, name: "Projeto 02", description: "Pequena descrição." },
-      { image: "" as ImageField, name: "Projeto 03", description: "Pequena descrição." },
-      { image: "" as ImageField, name: "Projeto 04", description: "Pequena descrição." },
-    ],
+      {
+        image: "https://i.postimg.cc/fRhhMxW8/BELA-SOLUCOES.png",
+        name: "Bela Soluções®",
+        description:
+          "A letra “a” aberta rompe a rigidez do restante da marca, um gesto de atualização sem abrir mão da solidez que a empresa já tinha construído. O verde entra como ponte entre os materiais naturais do catálogo e a ideia de recomeço que costuma vir com uma reforma.",
+        href: "https://i.postimg.cc/pVZWGc2x/BS.png",
+      },
+      {
+        image: "https://i.postimg.cc/Ls9K121Y/DEMAQ.png",
+        name: "Demaq",
+        description:
+          "A marca já existia, então o caminho foi de atualização, não de reinvenção. Vermelho e azul, herdados da identidade anterior, ganham mais vibração para equilibrar dois lados do negócio: a criatividade de quem costura e a precisão técnica de quem conserta a máquina.",
+        href: "https://i.postimg.cc/Z5YVPRwv/DEMAQ.png",
+      },
+      {
+        image: "https://i.postimg.cc/GpLwydy5/MIDWAY.png",
+        name: "Midway Corretora",
+        description:
+          "O símbolo nasce da ideia de proteção que acompanha, não que domina: um leão de postura serena, não agressiva, para comunicar cuidado constante em vez de força. O nome integrado à estrutura, e não apenas ao lado dela, reforça que a marca é parte desse cuidado, não um selo aplicado por cima.",
+        href: "https://heyzine.com/flip-book/84d0a12655.html",
+      },
+      {
+        image: "https://i.postimg.cc/1zvx020n/DOURADO-3.png",
+        name: "Donato Imóveis",
+        description:
+          "O cliente queria fugir do padrão visual das corretoras tradicionais sem virar algo complexo. A casa ocupando o “o” resolve isso com economia, um símbolo só, sem elementos soltos, pensado para funcionar igual em fachada, ícone de rede social ou favicon. O gradiente dourado entrega o toque de modernidade que ele pedia, sem depender de composição elaborada para se sustentar.",
+      },
+    ] as BrandProject[],
   },
 };
 
