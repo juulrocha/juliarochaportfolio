@@ -6,6 +6,9 @@ import { brandingContent } from "@/content/portfolio";
  * Landing 01 — Branding
  * Estrutura vertical: Construção de Marca (2 projetos maiores)
  * seguido por Identidade Visual (grade reutilizável).
+ *
+ * Quando um projeto tem `href`, a imagem vira um link clicável
+ * (abre em nova aba). Sem `href`, o card permanece só decorativo.
  */
 export function BrandingLanding() {
   const c = brandingContent;
@@ -16,25 +19,41 @@ export function BrandingLanding() {
       <section className="border-t border-black/10 pt-16 md:pt-24">
         <BlockTitle>{c.brandBuild.title}</BlockTitle>
         <div className="space-y-20 md:space-y-28">
-          {c.brandBuild.projects.map((p, i) => (
-            <article key={i} className="grid gap-6 md:grid-cols-12 md:gap-10">
-              <div className="md:col-span-8">
-                <EditableImage
-                  src={p.image}
-                  alt={p.name}
-                  className="aspect-[4/3] w-full object-cover"
-                />
-              </div>
-              <div className="md:col-span-4 md:pt-6">
-                <h3 className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-tight md:text-3xl">
-                  {p.name}
-                </h3>
-                <p className="mt-4 font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/70">
-                  {p.description}
-                </p>
-              </div>
-            </article>
-          ))}
+          {c.brandBuild.projects.map((p, i) => {
+            const image = (
+              <EditableImage
+                src={p.image}
+                alt={p.name}
+                className="aspect-[4/3] w-full object-cover"
+              />
+            );
+            return (
+              <article key={i} className="grid gap-6 md:grid-cols-12 md:gap-10">
+                <div className="md:col-span-8">
+                  {p.href ? (
+                    <a
+                      href={p.href}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                      className="block"
+                    >
+                      {image}
+                    </a>
+                  ) : (
+                    image
+                  )}
+                </div>
+                <div className="md:col-span-4 md:pt-6">
+                  <h3 className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-tight md:text-3xl">
+                    {p.name}
+                  </h3>
+                  <p className="mt-4 font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/70">
+                    {p.description}
+                  </p>
+                </div>
+              </article>
+            );
+          })}
         </div>
       </section>
 
@@ -42,21 +61,37 @@ export function BrandingLanding() {
       <section className="mt-24 border-t border-black/10 pt-16 md:mt-32 md:pt-24">
         <BlockTitle>{c.visualIdentity.title}</BlockTitle>
         <div className="grid gap-x-8 gap-y-14 sm:grid-cols-2 md:grid-cols-3">
-          {c.visualIdentity.projects.map((p, i) => (
-            <article key={i}>
+          {c.visualIdentity.projects.map((p, i) => {
+            const image = (
               <EditableImage
                 src={p.image}
                 alt={p.name}
                 className="aspect-square w-full object-cover"
               />
-              <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg uppercase tracking-tight">
-                {p.name}
-              </h3>
-              <p className="mt-1 font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
-                {p.description}
-              </p>
-            </article>
-          ))}
+            );
+            return (
+              <article key={i}>
+                {p.href ? (
+                  <a
+                    href={p.href}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="block"
+                  >
+                    {image}
+                  </a>
+                ) : (
+                  image
+                )}
+                <h3 className="mt-4 font-[family-name:var(--font-display)] text-lg uppercase tracking-tight">
+                  {p.name}
+                </h3>
+                <p className="mt-1 font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
+                  {p.description}
+                </p>
+              </article>
+            );
+          })}
         </div>
       </section>
     </CategoryLayout>
