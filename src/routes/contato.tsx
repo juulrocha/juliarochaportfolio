@@ -21,7 +21,7 @@ function Contato() {
       <SiteNav />
       <main className="px-6 pt-32 pb-24">
         <div className="mx-auto max-w-3xl">
-          <span className="mb-4 block font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
+          <span className="mb-4 block text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
             Contato
           </span>
           <h1 className="mb-12 font-[family-name:var(--font-display)] text-6xl uppercase leading-[0.9] tracking-tight md:text-8xl">
@@ -36,9 +36,18 @@ function Contato() {
               </span>
               <a
                 href={`mailto:${site.contact.email}`}
-                className="text-2xl font-semibold tracking-tight transition-colors hover:text-[color:var(--cobalt)] md:text-3xl"
+                className="group inline-flex items-center gap-2 text-2xl font-semibold tracking-tight transition-colors hover:text-[color:var(--cobalt)] md:text-3xl"
               >
                 {site.contact.email}
+                <svg
+                  viewBox="0 0 24 24"
+                  className="h-4 w-4 shrink-0 text-black/30 transition-colors group-hover:text-[color:var(--cobalt)] md:h-5 md:w-5"
+                  fill="none"
+                  stroke="currentColor"
+                  strokeWidth="2"
+                >
+                  <path d="M7 17L17 7M9 7h8v8" strokeLinecap="round" strokeLinejoin="round" />
+                </svg>
               </a>
             </div>
 
