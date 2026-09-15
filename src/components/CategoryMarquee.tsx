@@ -13,7 +13,6 @@ function CategoryCard({ category }: { category: CategorySummary }) {
       <img
         src={hasImage ? category.cover : PLACEHOLDER_IMAGE}
         alt={category.name}
-        loading="lazy"
         width={1024}
         height={1024}
         className="absolute inset-0 h-full w-full object-cover"
@@ -31,24 +30,38 @@ function CategoryCard({ category }: { category: CategorySummary }) {
   );
 }
 
+/**
+ * Carrossel de categorias.
+ *
+ * A rolagem contínua é feita movendo um `transform: translateX` num ref
+ * (não via scrollLeft nativo), porque overflow-x-auto + scroll físico do
+ * navegador é pouco confiável em celular (a rolagem por toque do sistema
+ * "briga" com a rolagem automática por JS). Com transform, o movimento é
+ * 100% controlado por nós e funciona igual em qualquer aparelho.
+ */
 export function CategoryMarquee() {
   // Lista duplicada para loop infinito.
   const loop = [...categories, ...categories];
-  const scrollerRef = useRef<HTMLDivElement | null>(null);
+  const trackRef = useRef<HTMLDivElement | null>(null);
+  const posRef = useRef(0);
   const [paused, setPaused] = useState(false);
   const pauseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
-    const el = scrollerRef.current;
-    if (!el) return;
     let raf = 0;
     const speed = 0.5;
 
     const tick = () => {
-      if (!paused && el) {
-        const half = el.scrollWidth / 2;
-        el.scrollLeft += speed;
-        if (el.scrollLeft >= half) el.scrollLeft -= half;
+      const track = trackRef.current;
+      if (track) {
+        if (!paused) {
+          const half = track.scrollWidth / 2;
+          posRef.current -= speed;
+          if (half > 0 && Math.abs(posRef.current) >= half) {
+            posRef.current += half;
+          }
+          track.style.transform = `translateX(${posRef.current}px)`;
+        }
       }
       raf = requestAnimationFrame(tick);
     };
@@ -63,15 +76,22 @@ export function CategoryMarquee() {
   };
 
   const scrollByCard = (dir: 1 | -1) => {
-    const el = scrollerRef.current;
-    if (!el) return;
-    const card = el.querySelector<HTMLElement>("a");
+    const track = trackRef.current;
+    if (!track) return;
+    const card = track.querySelector<HTMLElement>("a");
     const step = (card?.offsetWidth ?? 300) + 24;
-    const half = el.scrollWidth / 2;
-    if (dir === -1 && el.scrollLeft - step < 0) {
-      el.scrollLeft += half;
-    }
-    el.scrollBy({ left: dir * step, behavior: "smooth" });
+    const half = track.scrollWidth / 2;
+
+    posRef.current -= dir * step;
+    if (posRef.current > 0) posRef.current -= half;
+    if (half > 0 && Math.abs(posRef.current) >= half) posRef.current += half;
+
+    track.style.transition = "transform 0.4s cubic-bezier(0.22, 1, 0.36, 1)";
+    track.style.transform = `translateX(${posRef.current}px)`;
+    window.setTimeout(() => {
+      if (trackRef.current) trackRef.current.style.transition = "";
+    }, 400);
+
     pauseBriefly();
   };
 
@@ -81,44 +101,45 @@ export function CategoryMarquee() {
         <h2 className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-tight sm:text-3xl">
           PROJETOS&nbsp;
         </h2>
-        <span className="font-mono text-xs uppercase text-[color:var(--cobalt)] sm:text-sm">
-          EXPLORAR
+        <span className="text-xs uppercase tracking-widest text-black/40 sm:text-sm">
+          Explorar
         </span>
       </div>
 
-      <div className="relative">
+      <div
+        className="relative overflow-hidden"
+        onMouseEnter={() => setPaused(true)}
+        onMouseLeave={() => setPaused(false)}
+        onTouchStart={pauseBriefly}
+      >
         {/* Fades laterais */}
         <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[color:var(--background)] to-transparent sm:w-24" />
         <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[color:var(--background)] to-transparent sm:w-24" />
 
-        {/* Setas */}
+        {/* Setas — discretas, cinza */}
         <button
           type="button"
           aria-label="Anterior"
           onClick={() => scrollByCard(-1)}
-          className="absolute left-2 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-[color:var(--cobalt)] shadow-lg ring-1 ring-black/5 backdrop-blur transition hover:bg-white hover:scale-105 sm:left-4"
+          className="absolute left-2 top-1/2 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/70 text-black/40 ring-1 ring-black/5 backdrop-blur transition hover:bg-white hover:text-black/60 sm:left-4"
         >
-          <ChevronLeft size={22} strokeWidth={2.5} />
+          <ChevronLeft size={18} strokeWidth={1.75} />
         </button>
         <button
           type="button"
           aria-label="Próximo"
           onClick={() => scrollByCard(1)}
-          className="absolute right-2 top-1/2 z-20 grid h-11 w-11 -translate-y-1/2 place-items-center rounded-full bg-white/90 text-[color:var(--cobalt)] shadow-lg ring-1 ring-black/5 backdrop-blur transition hover:bg-white hover:scale-105 sm:right-4"
+          className="absolute right-2 top-1/2 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/70 text-black/40 ring-1 ring-black/5 backdrop-blur transition hover:bg-white hover:text-black/60 sm:right-4"
         >
-          <ChevronRight size={22} strokeWidth={2.5} />
+          <ChevronRight size={18} strokeWidth={1.75} />
         </button>
 
-        <div
-          ref={scrollerRef}
-          className="flex w-full gap-6 overflow-x-auto py-4 [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
-          onMouseEnter={() => setPaused(true)}
-          onMouseLeave={() => setPaused(false)}
-          onTouchStart={pauseBriefly}
-        >
-          {loop.map((c, i) => (
-            <CategoryCard key={`${c.slug}-${i}`} category={c} />
-          ))}
+        <div className="w-full overflow-hidden py-4">
+          <div ref={trackRef} className="flex w-max gap-6" style={{ willChange: "transform" }}>
+            {loop.map((c, i) => (
+              <CategoryCard key={`${c.slug}-${i}`} category={c} />
+            ))}
+          </div>
         </div>
       </div>
     </section>
