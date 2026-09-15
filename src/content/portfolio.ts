@@ -154,6 +154,16 @@ export const brandingContent = {
 // ============================================================
 //  LANDING 02 — AUDIOVISUAL
 // ============================================================
+
+// Vídeo de rede social. `ano` aparece no card, junto da plataforma.
+export type SocialVideo = {
+  thumbnail: ImageField;
+  username: string;
+  platform: string;
+  ano: string;
+  href: LinkField;
+};
+
 export const audiovisualContent = {
   slug: "audiovisual" as const,
   number: "02",
@@ -166,37 +176,75 @@ export const audiovisualContent = {
       "Filmes curtos autorais e colaborativos. Clique na miniatura para assistir.",
     items: [
       {
-        thumbnail: "" as ImageField,
-        name: "Curta 01",
-        description: "Pequena descrição.",
-        href: "https://youtube.com" as LinkField,
+        thumbnail: "https://i.postimg.cc/sXf6V4LB/CAPA-1.png" as ImageField,
+        name: "O QUE É CULTURA?",
+        description:
+          "Documentário-reportagem que parte do Convite à Filosofia, de Marilena Chaui, para discutir cultura como construção simbólica e social, cruzando entrevistas com cenas urbanas e visitas a centros culturais. Roteiro, edição e montagem final.",
+        href: "https://youtu.be/25luCc6XadY?si=UzWuGQ2Z5lKSUjjI" as LinkField,
       },
       {
-        thumbnail: "" as ImageField,
-        name: "Curta 02",
-        description: "Pequena descrição.",
-        href: "https://youtube.com" as LinkField,
+        thumbnail: "https://i.postimg.cc/qvf1tTFQ/CAPA-2.png" as ImageField,
+        name: "VOCÊ PENSA POR SI MESMO?",
+        description:
+          "Curta inspirado em Heidegger, que discute como a técnica não é apenas ferramenta, mas molda a forma como pensamos, enxergamos e existimos. Direção geral.",
+        href: "https://youtu.be/e1h1GBetVEU?si=y3wbpRwSY2xnoP_Q" as LinkField,
       },
       {
-        thumbnail: "" as ImageField,
-        name: "Curta 03",
-        description: "Pequena descrição.",
-        href: "https://youtube.com" as LinkField,
+        thumbnail: "https://i.postimg.cc/XYwQdPSv/CAPA-3.png" as ImageField,
+        name: "A ERA DO ESPETÁCULO",
+        description:
+          "Sátira de programação de TV construída para discutir espetacularização, performance e validação digital, com jornalismo, entretenimento e influenciadores como alvo do humor. Direção geral e edição/montagem.",
+        href: "https://youtu.be/iKbDbSwF-gA?si=Nqleg63Qf-e8Heox" as LinkField,
       },
     ],
   },
   socialVideos: {
     title: "Vídeos para Redes",
-    description:
-      "Uma pilha de vídeos feitos para redes sociais. Clique para expandir.",
+    description: "Clique para expandir.",
     items: [
-      { thumbnail: "" as ImageField, username: "@usuario", platform: "Instagram", href: "https://instagram.com" as LinkField },
-      { thumbnail: "" as ImageField, username: "@usuario", platform: "TikTok",    href: "https://tiktok.com"    as LinkField },
-      { thumbnail: "" as ImageField, username: "@usuario", platform: "Instagram", href: "https://instagram.com" as LinkField },
-      { thumbnail: "" as ImageField, username: "@usuario", platform: "YouTube",   href: "https://youtube.com"   as LinkField },
-      { thumbnail: "" as ImageField, username: "@usuario", platform: "TikTok",    href: "https://tiktok.com"    as LinkField },
-      { thumbnail: "" as ImageField, username: "@usuario", platform: "Instagram", href: "https://instagram.com" as LinkField },
-    ],
+      {
+        thumbnail: "" as ImageField,
+        username: "@juulrocha",
+        platform: "TikTok",
+        ano: "Julho 2026",
+        href: "https://vt.tiktok.com/ZSqC36e3v/" as LinkField,
+      },
+      {
+        thumbnail: "https://i.postimg.cc/HnrR0td1/Save-Clip-App-491493219-18498196051019987-2252353839365951306-n.jpg" as ImageField,
+        username: "@thiagochiovatto",
+        platform: "Instagram",
+        ano: "Abril 2025",
+        href: "https://www.instagram.com/reel/DIXQKd9uf_Q/" as LinkField,
+      },
+      {
+        thumbnail: "https://i.postimg.cc/2jdZrfDG/Save-Clip-App-622108461-18071078252620557-3496761821283692781-n.jpg" as ImageField,
+        username: "@lpespacodasunhas",
+        platform: "Instagram",
+        ano: "Janeiro 2026",
+        href: "https://www.instagram.com/reel/DT3MwtBArKZ/" as LinkField,
+      },
+      {
+        thumbnail: "https://i.postimg.cc/j2qdRmHh/Save-Clip-App-521410661-17900767770237022-7555636352244294548-n.jpg" as ImageField,
+        username: "@heinztools",
+        platform: "Instagram",
+        ano: "Julho 2025",
+        href: "https://www.instagram.com/reel/DL-tctCtYdB/" as LinkField,
+      },
+      {
+        thumbnail: "https://i.postimg.cc/QNRh4FPf/Save-Clip-App-502385645-17852223672455017-8536494130495141467-n.jpg" as ImageField,
+        username: "@eunia.cc",
+        platform: "Instagram",
+        ano: "Maio 2025",
+        href: "https://www.instagram.com/reel/DKMl8yXqM6Q/" as LinkField,
+      },
+      {
+        thumbnail: "https://i.postimg.cc/KjsFxzvD/Save-Clip-App-589307742-18183020722356904-4063788614893364635-n.jpg" as ImageField,
+        username: "@vennerambiental",
+        platform: "Instagram",
+        ano: "Dezembro 2025",
+        href: "https://www.instagram.com/reel/DRySIwZDRZr/" as LinkField,
+      },
+    ] as SocialVideo[],
   },
 };
 
