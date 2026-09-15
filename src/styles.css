@@ -34,9 +34,13 @@
   --color-ring-offset-background: var(--background);
   --color-cobalt: var(--cobalt);
   --color-surface: var(--surface);
-  --font-sans: "Archivo", "Inter", ui-sans-serif, system-ui, sans-serif;
+  /* Poppins em tudo, exceto títulos (Anton). font-mono também aponta para
+     Poppins para que rótulos pequenos (eyebrow, "recolher" etc.) parem de
+     usar fonte monoespaçada e fiquem visualmente consistentes. */
+  --font-sans: "Poppins", "Inter", ui-sans-serif, system-ui, sans-serif;
   --font-display: "Anton", "Archivo", "Inter", sans-serif;
-  --font-editorial: "Archivo", "Inter", ui-sans-serif, sans-serif;
+  --font-editorial: "Poppins", "Inter", ui-sans-serif, sans-serif;
+  --font-mono: "Poppins", "Inter", ui-sans-serif, sans-serif;
 }
 
 :root {
@@ -102,4 +106,35 @@
   &:hover {
     animation-play-state: paused;
   }
+}
+
+/* Ícones de ferramentas (Sobre mim): sobem rapidinho, um de cada vez, em loop. */
+@keyframes tool-pop {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  20% {
+    transform: translateY(-6px);
+  }
+  40% {
+    transform: translateY(0);
+  }
+}
+
+@utility animate-tool-pop {
+  animation: tool-pop 2.4s ease-in-out infinite;
+}
+
+/* Botão de currículo: saltinho sutil e contínuo. */
+@keyframes subtle-bounce {
+  0%, 100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(-3px);
+  }
+}
+
+@utility animate-subtle-bounce {
+  animation: subtle-bounce 2.2s ease-in-out infinite;
 }
