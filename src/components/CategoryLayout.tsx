@@ -15,24 +15,28 @@ type Props = {
  * Cabeçalho e wrapper compartilhado por todas as landings de categoria.
  * Mantém a identidade visual (tipografia, grid, cor) e concentra o
  * cabeçalho: botão voltar, identificador numérico, nome e descrição.
+ *
+ * O conteúdo entra com um fade + leve slide-up (animate-in do
+ * tw-animate-css) para suavizar a troca de página ao clicar numa
+ * categoria, em vez do corte seco.
  */
 export function CategoryLayout({ number, name, intro, children }: Props) {
   return (
     <div className="min-h-screen bg-[color:var(--background)] text-[#1D1D1F]">
       <SiteNav />
 
-      <main className="px-6 pt-28 pb-24 md:pt-32">
+      <main className="animate-in fade-in slide-in-from-bottom-3 px-6 pt-28 pb-24 duration-500 ease-out md:pt-32">
         <div className="mx-auto max-w-6xl">
           <Link
             to="/"
-            className="mb-12 inline-flex items-center gap-2 font-mono text-xs uppercase tracking-widest text-black/60 transition-colors hover:text-[color:var(--cobalt)]"
+            className="mb-12 inline-flex items-center gap-2 text-xs uppercase tracking-widest text-black/60 transition-colors hover:text-[color:var(--cobalt)]"
           >
             <ArrowLeft size={14} strokeWidth={2} />
             Voltar
           </Link>
 
           <header className="mb-16 md:mb-24">
-            <div className="mb-4 font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
+            <div className="mb-4 text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
               {number}
             </div>
             <h1 className="font-[family-name:var(--font-display)] text-5xl uppercase leading-[0.9] tracking-tight sm:text-7xl md:text-[8rem]">
