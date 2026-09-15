@@ -29,13 +29,13 @@ function Index() {
           </p>
           </div>
 
-          {/* Seta lateral (apenas mobile) */}
+          {/* Seta lateral (apenas mobile) — simples e cinza */}
           <a
             href="#projetos"
             aria-label="Ver projetos"
-            className="absolute right-2 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center rounded-full text-[color:var(--cobalt)] ring-1 ring-[color:var(--cobalt)]/30 animate-bounce lg:hidden"
+            className="absolute right-2 top-1/2 grid h-10 w-10 -translate-y-1/2 place-items-center text-black/35 animate-bounce lg:hidden"
           >
-            <ChevronDown size={20} strokeWidth={2.5} />
+            <ChevronDown size={22} strokeWidth={1.75} />
           </a>
         </section>
 
