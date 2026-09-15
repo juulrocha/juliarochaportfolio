@@ -20,7 +20,7 @@ export const site = {
   about: {
     eyebrow: "Sobre",
     title: "Júlia Rocha",
-    banner: "" as ImageField, // banner horizontal editável
+    banner: "https://i.postimg.cc/4d6qW39R/JULIA-ROCHA-(1).png" as ImageField, // banner horizontal editável
        body: [
       "É difícil me colocar em uma área só, e sinceramente, eu gosto disso!",
       "Publicidade acabou virando o lugar onde consigo juntar algumas das coisas que mais me interessam: criar, observar, pesquisar, organizar ideias e entender por que certas coisas fazem sentido para as pessoas. No meio disso, fui construindo experiência em branding, direção criativa, design, audiovisual e estratégia, de projetos acadêmicos a trabalhos desenvolvidos para marcas e clientes reais.",
@@ -34,16 +34,16 @@ export const site = {
     resumeLabel: "Currículo",
     // Logos das ferramentas — cada `logo` é editável/substituível.
     tools: [
-      { name: "Adobe Photoshop", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/adobephotoshop.svg" as ImageField },
-      { name: "Adobe Illustrator", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/adobeillustrator.svg" as ImageField },
-      { name: "Adobe Premiere Pro", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/adobepremierepro.svg" as ImageField },
-      { name: "Canva", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/canva.svg" as ImageField },
-      { name: "Figma", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/figma.svg" as ImageField },
+      { name: "Adobe Photoshop", logo: "https://cdn.simpleicons.org/adobephotoshop" as ImageField },
+      { name: "Adobe Illustrator", logo: "https://cdn.simpleicons.org/adobeillustrator" as ImageField },
+      { name: "Adobe Premiere Pro", logo: "https://cdn.simpleicons.org/adobepremierepro" as ImageField },
+      { name: "Canva", logo: "https://cdn.simpleicons.org/canva" as ImageField },
+      { name: "Figma", logo: "https://cdn.simpleicons.org/figma" as ImageField },
       { name: "CapCut", logo: "/logos/capcut.svg" as ImageField },
-      { name: "Adobe Creative Cloud", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/adobecreativecloud.svg" as ImageField },
-      { name: "Claude", logo: "https://cdn.jsdelivr.net/npm/simple-icons@13/icons/claude.svg" as ImageField },
-      { name: "ChatGPT", logo: "https://cdn.jsdelivr.net/npm/simple-icons@11/icons/openai.svg" as ImageField },
-      { name: "Microsoft Office", logo: "https://cdn.jsdelivr.net/npm/simple-icons@9/icons/microsoftoffice.svg" as ImageField },
+      { name: "Adobe Creative Cloud", logo: "https://cdn.simpleicons.org/adobecreativecloud" as ImageField },
+      { name: "Claude", logo: "https://cdn.simpleicons.org/claude" as ImageField },
+      { name: "ChatGPT", logo: "https://cdn.simpleicons.org/openai" as ImageField },
+      { name: "Microsoft Office", logo: "https://cdn.simpleicons.org/microsoftoffice" as ImageField },
     ],
 
   },
