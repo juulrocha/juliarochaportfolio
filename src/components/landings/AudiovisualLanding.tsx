@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { CategoryLayout, BlockTitle } from "@/components/CategoryLayout";
 import { EditableImage } from "@/components/Placeholder";
 import { audiovisualContent } from "@/content/portfolio";
@@ -7,17 +7,20 @@ import { audiovisualContent } from "@/content/portfolio";
  * Landing 02 — Audiovisual
  * Curtas em grade tipo YouTube + Pilha expansível de vídeos para redes.
  *
- * Clicar na miniatura reproduz o vídeo embutido no próprio card
- * (sem sair da página), em vez de abrir em nova aba.
- *
  * Miniaturas automáticas:
- * - YouTube: gerada direto pela URL do vídeo, sem precisar subir nada.
+ * - YouTube: gerada direto pela URL do vídeo.
  * - TikTok: buscada via oEmbed público do TikTok (pode falhar às vezes).
  * - Instagram: NÃO é possível puxar automaticamente (Meta bloqueou esse
- *   acesso público). Para itens do Instagram, preencha `thumbnail`
- *   manualmente no portfolio.ts com uma imagem hospedada (ex.: postimg.cc).
- * Se `thumbnail` já vier preenchido no conteúdo, ele sempre tem prioridade
- * sobre qualquer busca automática.
+ *   acesso público) — preencher `thumbnail` manualmente no portfolio.ts.
+ * Se `thumbnail` já vier preenchido no conteúdo, ele sempre tem prioridade.
+ *
+ * Reprodução ao clicar:
+ * - YouTube: toca automaticamente mudo, com um botão de som visível para
+ *   ativar o áudio sem recarregar o vídeo (via postMessage do player).
+ * - TikTok: tenta autoplay; o próprio player do TikTok controla o som.
+ * - Instagram: não permite autoplay nem controle de som via iframe — a
+ *   pessoa precisa clicar dentro do card do Instagram para iniciar,
+ *   sempre com som. Essa é uma restrição da própria plataforma.
  */
 
 // -------------------- Helpers de embed --------------------
@@ -29,14 +32,16 @@ function getYouTubeId(url: string): string | null {
   return match ? match[1] : null;
 }
 
-function getYouTubeEmbedUrl(url: string): string | null {
-  const id = getYouTubeId(url);
-  return id ? `https://www.youtube.com/embed/${id}?autoplay=1&rel=0` : null;
-}
-
 function getYouTubeThumbnail(url: string): string | null {
   const id = getYouTubeId(url);
   return id ? `https://img.youtube.com/vi/${id}/hqdefault.jpg` : null;
+}
+
+function getYouTubeEmbedUrl(url: string): string | null {
+  const id = getYouTubeId(url);
+  return id
+    ? `https://www.youtube.com/embed/${id}?autoplay=1&mute=1&enablejsapi=1&rel=0`
+    : null;
 }
 
 function getInstagramEmbedUrl(url: string): string | null {
@@ -46,7 +51,11 @@ function getInstagramEmbedUrl(url: string): string | null {
 
 function getTikTokEmbedUrl(url: string): string | null {
   const match = url.match(/tiktok\.com\/.+\/video\/(\d+)/);
-  return match ? `https://www.tiktok.com/embed/v2/${match[1]}` : null;
+  return match ? `https://www.tiktok.com/embed/v2/${match[1]}?autoplay=1` : null;
+}
+
+function isYouTubeUrl(href: string, platform?: string) {
+  return (platform || "").toLowerCase() === "youtube" || href.includes("youtu");
 }
 
 function getEmbedUrl(href: string, platform?: string): string | null {
@@ -58,11 +67,7 @@ function getEmbedUrl(href: string, platform?: string): string | null {
   return null;
 }
 
-/**
- * Busca a thumbnail de um vídeo do TikTok via oEmbed público.
- * Retorna null enquanto carrega ou se a busca falhar (nesse caso,
- * o EditableImage cai no placeholder padrão).
- */
+/** Busca a thumbnail de um vídeo do TikTok via oEmbed público. */
 function useTikTokThumbnail(url: string, enabled: boolean): string | null {
   const [thumb, setThumb] = useState<string | null>(null);
 
@@ -75,9 +80,7 @@ function useTikTokThumbnail(url: string, enabled: boolean): string | null {
       .then((data) => {
         if (!cancelled && data?.thumbnail_url) setThumb(data.thumbnail_url);
       })
-      .catch(() => {
-        // Falha silenciosa: cai no placeholder padrão.
-      });
+      .catch(() => {});
 
     return () => {
       cancelled = true;
@@ -87,29 +90,17 @@ function useTikTokThumbnail(url: string, enabled: boolean): string | null {
   return thumb;
 }
 
-/**
- * Resolve a melhor thumbnail disponível para um item:
- * 1) thumbnail manual definida no conteúdo (sempre prioridade)
- * 2) automática por plataforma (YouTube síncrono, TikTok assíncrono)
- * 3) vazio → EditableImage usa o placeholder padrão
- */
 function useResolvedThumbnail(manualThumbnail: string, href: string, platform: string): string {
   const p = (platform || "").toLowerCase();
   const isTikTok = p === "tiktok" || href.includes("tiktok.com");
   const tiktokThumb = useTikTokThumbnail(href, isTikTok && !manualThumbnail);
 
   if (manualThumbnail) return manualThumbnail;
-  if (p === "youtube" || href.includes("youtu")) {
-    return getYouTubeThumbnail(href) || "";
-  }
-  if (isTikTok) {
-    return tiktokThumb || "";
-  }
-  // Instagram e outros: sem busca automática disponível.
+  if (p === "youtube" || href.includes("youtu")) return getYouTubeThumbnail(href) || "";
+  if (isTikTok) return tiktokThumb || "";
   return "";
 }
 
-// Ícone de play simples, sem dependência externa.
 function PlayIcon() {
   return (
     <span className="flex h-12 w-12 items-center justify-center rounded-full bg-white/90 shadow-lg transition-transform group-hover:scale-110 sm:h-14 sm:w-14">
@@ -120,8 +111,32 @@ function PlayIcon() {
   );
 }
 
+function SoundButton({ muted, onClick }: { muted: boolean; onClick: () => void }) {
+  return (
+    <button
+      type="button"
+      onClick={onClick}
+      aria-label={muted ? "Ativar som" : "Silenciar"}
+      className="absolute bottom-3 right-3 z-10 grid h-9 w-9 place-items-center rounded-full bg-black/60 text-white backdrop-blur transition hover:bg-black/75"
+    >
+      {muted ? (
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M11 5 6 9H2v6h4l5 4V5Z" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M23 9l-6 6M17 9l6 6" strokeLinecap="round" />
+        </svg>
+      ) : (
+        <svg viewBox="0 0 24 24" className="h-4 w-4" fill="none" stroke="currentColor" strokeWidth="2">
+          <path d="M11 5 6 9H2v6h4l5 4V5Z" strokeLinecap="round" strokeLinejoin="round" />
+          <path d="M15.5 8.5a5 5 0 0 1 0 7M19 5a10 10 0 0 1 0 14" strokeLinecap="round" />
+        </svg>
+      )}
+    </button>
+  );
+}
+
 export function AudiovisualLanding() {
   const c = audiovisualContent;
+  const [socialOpen, setSocialOpen] = useState(false);
 
   return (
     <CategoryLayout number={c.number} name={c.name} intro={c.intro}>
@@ -138,10 +153,13 @@ export function AudiovisualLanding() {
       {/* Bloco 2 — Vídeos para Redes (pilha expansível) */}
       <section className="mt-24 border-t border-black/10 pt-16 md:mt-32 md:pt-24">
         <BlockTitle>{c.socialVideos.title}</BlockTitle>
-        <p className="mb-10 max-w-2xl font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
-          {c.socialVideos.description}
-        </p>
-        <SocialStack items={c.socialVideos.items} />
+        {/* Só mostra "clique para expandir" enquanto a pilha está fechada */}
+        {!socialOpen && (
+          <p className="mb-10 max-w-2xl font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
+            {c.socialVideos.description}
+          </p>
+        )}
+        <SocialStack items={c.socialVideos.items} open={socialOpen} setOpen={setSocialOpen} />
       </section>
     </CategoryLayout>
   );
@@ -203,7 +221,7 @@ function ShortCard({ v }: { v: ShortItem }) {
 
 function ShortsGrid({ items }: { items: ShortItem[] }) {
   return (
-    <div className="grid grid-cols-3 gap-x-3 gap-y-8 sm:gap-x-6 sm:gap-y-12">
+    <div className="grid grid-cols-1 gap-y-10 sm:grid-cols-3 sm:gap-x-6 sm:gap-y-12">
       {items.map((v, i) => (
         <ShortCard key={i} v={v} />
       ))}
@@ -234,20 +252,37 @@ function SocialPreviewThumb({ v }: { v: SocialItem }) {
 
 function SocialCard({ v }: { v: SocialItem }) {
   const [playing, setPlaying] = useState(false);
+  const [muted, setMuted] = useState(true);
+  const iframeRef = useRef<HTMLIFrameElement>(null);
   const resolvedThumb = useResolvedThumbnail(v.thumbnail, v.href, v.platform);
   const embedUrl = playing ? getEmbedUrl(v.href, v.platform) : null;
+  const isYouTube = isYouTubeUrl(v.href, v.platform);
+
+  const toggleSound = () => {
+    const win = iframeRef.current?.contentWindow;
+    if (!win) return;
+    win.postMessage(
+      JSON.stringify({ event: "command", func: muted ? "unMute" : "mute", args: "" }),
+      "*"
+    );
+    setMuted(!muted);
+  };
 
   return (
     <div className="group block">
       <div className="relative aspect-[9/16] overflow-hidden rounded-2xl bg-white shadow-md ring-1 ring-black/5 transition-all duration-500 ease-out group-hover:-translate-y-1 group-hover:shadow-xl">
         {embedUrl ? (
-          <iframe
-            src={embedUrl}
-            className="absolute inset-0 h-full w-full rounded-2xl"
-            allow="autoplay; encrypted-media; picture-in-picture"
-            allowFullScreen
-            title={v.username}
-          />
+          <>
+            <iframe
+              ref={iframeRef}
+              src={embedUrl}
+              className="absolute inset-0 h-full w-full rounded-2xl"
+              allow="autoplay; encrypted-media; picture-in-picture"
+              allowFullScreen
+              title={v.username}
+            />
+            {isYouTube && <SoundButton muted={muted} onClick={toggleSound} />}
+          </>
         ) : (
           <button
             type="button"
@@ -270,7 +305,7 @@ function SocialCard({ v }: { v: SocialItem }) {
         <div className="font-[family-name:var(--font-display)] text-xs uppercase leading-tight tracking-tight transition-colors group-hover:text-[color:var(--cobalt)] sm:text-sm">
           {v.username}
         </div>
-        <div className="mt-0.5 font-mono text-[10px] uppercase tracking-widest text-black/50 sm:text-xs">
+        <div className="mt-0.5 text-[10px] uppercase tracking-widest text-black/50 sm:text-xs">
           {v.platform}
           {v.ano ? ` · ${v.ano}` : ""}
         </div>
@@ -279,9 +314,15 @@ function SocialCard({ v }: { v: SocialItem }) {
   );
 }
 
-function SocialStack({ items }: { items: SocialItem[] }) {
-  const [open, setOpen] = useState(false);
-
+function SocialStack({
+  items,
+  open,
+  setOpen,
+}: {
+  items: SocialItem[];
+  open: boolean;
+  setOpen: (v: boolean) => void;
+}) {
   if (!open) {
     return (
       <button
@@ -306,7 +347,7 @@ function SocialStack({ items }: { items: SocialItem[] }) {
             </div>
           );
         })}
-        <span className="absolute bottom-0 left-0 w-full text-center font-mono text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
+        <span className="absolute bottom-0 left-0 w-full text-center text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
           Clique para expandir
         </span>
       </button>
@@ -324,7 +365,7 @@ function SocialStack({ items }: { items: SocialItem[] }) {
         <button
           type="button"
           onClick={() => setOpen(false)}
-          className="font-mono text-xs uppercase tracking-widest text-black/50 transition-colors hover:text-[color:var(--cobalt)]"
+          className="text-xs uppercase tracking-widest text-black/60 transition-colors hover:text-[color:var(--cobalt)]"
         >
           — Recolher —
         </button>
