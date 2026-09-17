@@ -356,9 +356,15 @@ function SocialStack({
 
   return (
     <div>
-      <div className="grid animate-in grid-cols-3 gap-3 fade-in duration-700 ease-out sm:gap-6">
+      <div className="grid grid-cols-3 gap-3 sm:gap-6">
         {items.map((v, i) => (
-          <SocialCard key={i} v={v} />
+          <div
+            key={i}
+            className="animate-in fade-in zoom-in-95 slide-in-from-bottom-4 duration-500 ease-out"
+            style={{ animationDelay: `${i * 80}ms`, animationFillMode: "backwards" }}
+          >
+            <SocialCard v={v} />
+          </div>
         ))}
       </div>
       <div className="mt-8 text-center">
