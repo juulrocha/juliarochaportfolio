@@ -7,7 +7,7 @@ import { SiteFooter } from "./SiteFooter";
 type Props = {
   number: string;
   name: string;
-  intro: string;
+  intro: ReactNode;
   children: ReactNode;
 };
 
