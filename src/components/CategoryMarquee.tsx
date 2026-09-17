@@ -30,21 +30,52 @@ function CategoryCard({ category }: { category: CategorySummary }) {
   );
 }
 
+/** Linha usada na versão empilhada (só celular): thumbnail + nome à
+ * esquerda, botão "Ver tudo" à direita. */
+function CategoryRow({ category }: { category: CategorySummary }) {
+  const hasImage = category.cover && category.cover.length > 0;
+  return (
+    <div className="flex items-center justify-between gap-4 border-b border-black/5 py-4 last:border-0">
+      <Link to={`/${category.slug}`} className="flex min-w-0 items-center gap-4">
+        <div className="h-16 w-16 shrink-0 overflow-hidden rounded-xl bg-[color:var(--surface)]">
+          <img
+            src={hasImage ? category.cover : PLACEHOLDER_IMAGE}
+            alt={category.name}
+            className="h-full w-full object-cover"
+          />
+        </div>
+        <div className="min-w-0">
+          <span className="block text-[10px] uppercase tracking-widest text-black/40">
+            {category.number}
+          </span>
+          <span className="block truncate text-base font-semibold tracking-tight">
+            {category.name}
+          </span>
+        </div>
+      </Link>
+      <Link
+        to={`/${category.slug}`}
+        className="shrink-0 rounded-full border border-black/10 px-4 py-2 text-xs uppercase tracking-widest text-black/60 transition-colors hover:border-[color:var(--cobalt)] hover:text-[color:var(--cobalt)]"
+      >
+        Ver tudo
+      </Link>
+    </div>
+  );
+}
+
 /**
  * Carrossel de categorias.
  *
- * A rolagem contínua é feita movendo um `transform: translateX` num ref
- * (não via scrollLeft nativo), porque overflow-x-auto + scroll físico do
- * navegador é pouco confiável em celular (a rolagem por toque do sistema
- * "briga" com a rolagem automática por JS). Com transform, o movimento é
- * 100% controlado por nós e funciona igual em qualquer aparelho.
+ * Desktop: sempre o carrossel horizontal com rolagem automática.
+ * Celular: ao tocar em "Explore aqui", alterna para uma lista vertical
+ * (uma categoria embaixo da outra) com botão "Ver tudo" em cada linha.
  */
 export function CategoryMarquee() {
-  // Lista duplicada para loop infinito.
   const loop = [...categories, ...categories];
   const trackRef = useRef<HTMLDivElement | null>(null);
   const posRef = useRef(0);
   const [paused, setPaused] = useState(false);
+  const [mobileExpanded, setMobileExpanded] = useState(false);
   const pauseTimeoutRef = useRef<ReturnType<typeof setTimeout> | null>(null);
 
   useEffect(() => {
@@ -101,44 +132,56 @@ export function CategoryMarquee() {
         <h2 className="font-[family-name:var(--font-display)] text-2xl uppercase tracking-tight sm:text-3xl">
           PROJETOS&nbsp;
         </h2>
-        <span className="text-xs uppercase tracking-widest text-black/40 sm:text-sm">
-          Explorar
-        </span>
+        <button
+          type="button"
+          onClick={() => setMobileExpanded((v) => !v)}
+          className="text-xs uppercase tracking-widest text-black/40 transition-colors hover:text-black/60 sm:pointer-events-none"
+        >
+          Explore aqui
+        </button>
       </div>
 
-      <div
-        className="relative overflow-hidden"
-        onMouseEnter={() => setPaused(true)}
-        onMouseLeave={() => setPaused(false)}
-        onTouchStart={pauseBriefly}
-      >
-        {/* Fades laterais */}
-        <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[color:var(--background)] to-transparent sm:w-24" />
-        <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[color:var(--background)] to-transparent sm:w-24" />
+      {/* Versão empilhada — só aparece no celular quando expandida */}
+      <div className={`px-6 sm:hidden ${mobileExpanded ? "block" : "hidden"}`}>
+        {categories.map((c) => (
+          <CategoryRow key={c.slug} category={c} />
+        ))}
+      </div>
 
-        {/* Setas — discretas, cinza */}
-        <button
-          type="button"
-          aria-label="Anterior"
-          onClick={() => scrollByCard(-1)}
-          className="absolute left-2 top-1/2 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/70 text-black/40 ring-1 ring-black/5 backdrop-blur transition hover:bg-white hover:text-black/60 sm:left-4"
+      {/* Carrossel horizontal — some no celular quando a lista está expandida */}
+      <div className={mobileExpanded ? "hidden sm:block" : "block"}>
+        <div
+          className="relative overflow-hidden"
+          onMouseEnter={() => setPaused(true)}
+          onMouseLeave={() => setPaused(false)}
+          onTouchStart={pauseBriefly}
         >
-          <ChevronLeft size={18} strokeWidth={1.75} />
-        </button>
-        <button
-          type="button"
-          aria-label="Próximo"
-          onClick={() => scrollByCard(1)}
-          className="absolute right-2 top-1/2 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/70 text-black/40 ring-1 ring-black/5 backdrop-blur transition hover:bg-white hover:text-black/60 sm:right-4"
-        >
-          <ChevronRight size={18} strokeWidth={1.75} />
-        </button>
+          <div className="pointer-events-none absolute inset-y-0 left-0 z-10 w-16 bg-gradient-to-r from-[color:var(--background)] to-transparent sm:w-24" />
+          <div className="pointer-events-none absolute inset-y-0 right-0 z-10 w-16 bg-gradient-to-l from-[color:var(--background)] to-transparent sm:w-24" />
 
-        <div className="w-full overflow-hidden py-4">
-          <div ref={trackRef} className="flex w-max gap-6" style={{ willChange: "transform" }}>
-            {loop.map((c, i) => (
-              <CategoryCard key={`${c.slug}-${i}`} category={c} />
-            ))}
+          <button
+            type="button"
+            aria-label="Anterior"
+            onClick={() => scrollByCard(-1)}
+            className="absolute left-2 top-1/2 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/70 text-black/40 ring-1 ring-black/5 backdrop-blur transition hover:bg-white hover:text-black/60 sm:left-4"
+          >
+            <ChevronLeft size={18} strokeWidth={1.75} />
+          </button>
+          <button
+            type="button"
+            aria-label="Próximo"
+            onClick={() => scrollByCard(1)}
+            className="absolute right-2 top-1/2 z-20 grid h-9 w-9 -translate-y-1/2 place-items-center rounded-full bg-white/70 text-black/40 ring-1 ring-black/5 backdrop-blur transition hover:bg-white hover:text-black/60 sm:right-4"
+          >
+            <ChevronRight size={18} strokeWidth={1.75} />
+          </button>
+
+          <div className="w-full overflow-hidden py-4">
+            <div ref={trackRef} className="flex w-max gap-6" style={{ willChange: "transform" }}>
+              {loop.map((c, i) => (
+                <CategoryCard key={`${c.slug}-${i}`} category={c} />
+              ))}
+            </div>
           </div>
         </div>
       </div>
