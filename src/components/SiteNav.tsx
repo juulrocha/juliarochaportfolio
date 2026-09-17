@@ -1,20 +1,24 @@
 import { useEffect, useState } from "react";
 import { Link, useLocation } from "@tanstack/react-router";
+import { categories } from "@/content/portfolio";
 
 /**
  * Barra de navegação fixa.
  *
- * - Enquanto no topo da página: sem separador nenhum, se funde ao herói.
- * - Ao rolar: em vez de uma linha fina (border-b), aparece uma sombra
- *   suave em degradê, transição mais fluida do que um traço reto.
- * - Logo: mostra "PORTFÓLIO." só na home. Em qualquer outra página
- *   (categorias, Sobre, Contato) mostra "JÚLIA ROCHA", com "ROCHA" em
- *   azul, igual à home.
+ * - Sem rolagem: totalmente transparente, se funde ao fundo da página.
+ * - Ao rolar: fica translúcida com blur, aparecendo em fade (sem borda,
+ *   sem linha, sem sombra) — só o vidro fosco ganhando opacidade aos
+ *   poucos.
+ * - Logo: "PORTFÓLIO." na home, Sobre mim e Contato. "JÚLIA ROCHA" (com
+ *   "ROCHA" em azul) apenas dentro das páginas de categoria (Branding,
+ *   Audiovisual, Design & Conteúdo).
  */
 export function SiteNav() {
   const [scrolled, setScrolled] = useState(false);
   const location = useLocation();
-  const isHome = location.pathname === "/";
+
+  const categorySlugs = categories.map((c) => `/${c.slug}`);
+  const isCategoryPage = categorySlugs.some((slug) => location.pathname.startsWith(slug));
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 12);
@@ -25,8 +29,10 @@ export function SiteNav() {
 
   return (
     <nav
-      className={`fixed top-0 left-0 right-0 z-50 bg-[color:var(--background)]/80 backdrop-blur-md transition-shadow duration-500 ease-out ${
-        scrolled ? "shadow-[0_12px_30px_-14px_rgba(0,0,0,0.15)]" : "shadow-none"
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ease-out ${
+        scrolled
+          ? "bg-[color:var(--background)]/75 backdrop-blur-md"
+          : "bg-transparent backdrop-blur-0"
       }`}
     >
       <div className="mx-auto flex h-16 max-w-7xl items-center justify-between px-6">
@@ -34,12 +40,12 @@ export function SiteNav() {
           to="/"
           className="font-[family-name:var(--font-display)] text-xl uppercase tracking-tight"
         >
-          {isHome ? (
-            <span className="text-[color:var(--cobalt)]">PORTFÓLIO.</span>
-          ) : (
+          {isCategoryPage ? (
             <span>
               JÚLIA <span className="text-[color:var(--cobalt)]">ROCHA</span>
             </span>
+          ) : (
+            <span className="text-[color:var(--cobalt)]">PORTFÓLIO.</span>
           )}
         </Link>
         <div className="flex gap-8 text-sm font-medium tracking-tight">
