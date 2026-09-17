@@ -19,7 +19,7 @@ export const Route = createFileRoute("/sobre")({
 });
 
 /** Parágrafo que aparece em fade + leve subida quando entra na tela. */
-function FadeParagraph({ children }: { children: ReactNode }) {
+function FadeParagraph({ children, className }: { children: ReactNode; className?: string }) {
   const ref = useRef<HTMLParagraphElement>(null);
   const [visible, setVisible] = useState(false);
 
@@ -44,7 +44,7 @@ function FadeParagraph({ children }: { children: ReactNode }) {
       ref={ref}
       className={`transition-all duration-700 ease-out ${
         visible ? "translate-y-0 opacity-100" : "translate-y-4 opacity-0"
-      }`}
+      } ${className ?? ""}`}
     >
       {children}
     </p>
@@ -98,9 +98,9 @@ function ToolsRow({ tools }: { tools: typeof site.about.tools }) {
 }
 
 /**
- * Setinha cinza flutuante indicando "tem mais texto abaixo".
- * Só aparece depois que a pessoa começa a rolar a página, e some quando
- * o último parágrafo já foi lido (entrou na tela).
+ * Setinha cinza indicando "tem mais texto abaixo".
+ * Só aparece depois que a pessoa começa a rolar, e some quando o
+ * último parágrafo já foi lido (entrou na tela).
  */
 function ScrollHint({ endRef }: { endRef: React.RefObject<HTMLElement> }) {
   const [scrolled, setScrolled] = useState(false);
@@ -137,6 +137,7 @@ function Sobre() {
   const lastWord = titleWords.pop() ?? "";
   const firstWords = titleWords.join(" ");
   const lastParagraphRef = useRef<HTMLParagraphElement>(null);
+  const lastIndex = site.about.body.length - 1;
 
   return (
     <div className="min-h-screen bg-[color:var(--background)] text-[#1D1D1F]">
@@ -164,13 +165,14 @@ function Sobre() {
             </h1>
           </div>
 
-          {/* Texto — cada parágrafo entra em fade ao rolar até ele */}
-          <div className="mt-10 grid gap-10 md:mt-16 md:grid-cols-12 md:gap-16">
-            <div className="hidden md:col-span-5 md:block" />
-            <div className="space-y-6 font-[family-name:var(--font-editorial)] text-base leading-relaxed text-black/70 md:col-span-7 md:text-lg">
-              {site.about.body.map((p, i) => {
-                const isLast = i === site.about.body.length - 1;
-                return isLast ? (
+          {/* Texto — alinhado à esquerda, logo abaixo do título.
+              Primeiro parágrafo em fonte manuscrita, como uma frase de
+              abertura mais pessoal. Cada parágrafo entra em fade ao
+              rolar até ele. */}
+          <div className="mt-10 max-w-2xl space-y-6 font-[family-name:var(--font-editorial)] text-base leading-relaxed text-black/70 md:mt-14 md:text-lg">
+            {site.about.body.map((p, i) => {
+              if (i === lastIndex) {
+                return (
                   <p
                     key={i}
                     ref={lastParagraphRef}
@@ -178,11 +180,20 @@ function Sobre() {
                   >
                     {p}
                   </p>
-                ) : (
-                  <FadeParagraph key={i}>{p}</FadeParagraph>
                 );
-              })}
-            </div>
+              }
+              if (i === 0) {
+                return (
+                  <FadeParagraph
+                    key={i}
+                    className="font-[family-name:'Caveat',cursive] text-3xl leading-snug text-black/80 sm:text-4xl"
+                  >
+                    {p}
+                  </FadeParagraph>
+                );
+              }
+              return <FadeParagraph key={i}>{p}</FadeParagraph>;
+            })}
           </div>
 
           {/* Bloco complementar — ferramentas + currículo */}
