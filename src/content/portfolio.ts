@@ -23,14 +23,14 @@ export const site = {
     banner: "https://i.postimg.cc/4d6qW39R/JULIA-ROCHA-(1).png" as ImageField, // banner horizontal editável
        body: [
       "É difícil me colocar em uma área só, e sinceramente, eu gosto disso!",
-      "Publicidade acabou virando o lugar onde consigo juntar algumas das coisas que mais me interessam: criar, observar, pesquisar, organizar ideias e entender por que certas coisas fazem sentido para as pessoas. No meio disso, fui construindo experiência em branding, direção criativa, design, audiovisual e estratégia, de projetos acadêmicos a trabalhos desenvolvidos para marcas e clientes reais.",
+      "A comunicação me abriu os olhos para como eu consigo juntar algumas das coisas que mais me interessam e me fazem sentir viva: criar, observar, pesquisar, organizar ideias, entender por que certas coisas fazem sentido para as pessoas. Isso resume muito bem quem eu sou. No meio disso, fui construindo experiência em branding, direção criativa, design, audiovisual e estratégia, de projetos acadêmicos a trabalhos desenvolvidos para marcas e clientes reais.",
       "Gosto especialmente da parte em que uma ideia ainda não está pronta. Pensar o conceito, encontrar a direção, testar possibilidades e transformar tudo isso em alguma coisa que funcione de verdade.",
-      "Hoje, estudo Publicidade e Propaganda e sigo construindo meu repertório entre projetos, referências e muita curiosidade. Também comecei a levar essa vontade de criar para o conteúdo, compartilhando um pouco dos meus interesses, experiências, hobbies e, vez ou outra, alguma ideia que achei boa demais para ficar só na minha cabeça.",
+      "Hoje, estudo Publicidade e Propaganda e sigo construindo meu repertório entre projetos, referências e muita curiosidade. Também levo essa vontade de criar para o conteúdo nas minhas redes, compartilhando um pouco dos meus interesses, experiências, hobbies e, vez ou outra, alguma ideia que achei boa demais para ficar só na minha cabeça.",
       "Esse espaço reúne um pouco disso tudo.",
       "Quer conhecer um pouco mais do que faço? Vamos conversar!",
     ],
     // ÚNICO local para trocar o link do currículo:
-    resumeUrl: "#" as LinkField,
+    resumeUrl: "https://acrobat.adobe.com/id/urn:aaid:sc:US:bb5e0b85-1789-4f64-8eaa-3fc47a7cb52d" as LinkField,
     resumeLabel: "Currículo",
     // Logos das ferramentas — cada `logo` é editável/substituível.
     tools: [
@@ -96,7 +96,7 @@ export const brandingContent = {
   number: "01",
   name: "Branding",
   intro:
-    "Marca é decisão, não decoração. Aqui reuni os projetos em que pensei o porquê antes do como — do zero, ou junto de quem já tinha uma história pra contar.",
+    "Uma marca é decisão. Não decoração. Aqui reuni os projetos em que pensei o porquê antes do como. Produzidos do zero ou junto com quem já tinha uma história para contar.",
   brandBuild: {
     title: "Construção de Marca",
     projects: [
@@ -175,11 +175,11 @@ export const audiovisualContent = {
   number: "02",
   name: "Audiovisual",
   intro:
-    "Roteiro, corte, ritmo. Curtas que nasceram de uma provocação em sala de aula e vídeos que fiz pra marcas aparecerem do jeito certo nas redes — assista com som ligado.",
+    "Produções audiovisuais, entre roteiro, corte e direção. Assista com som ligado.",
   shorts: {
     title: "Curtas",
     description:
-      "Filmes curtos autorais e colaborativos. Clique na miniatura para assistir.",
+      "Filmes curtos, autorais e universitários/colaborativos. Clique na miniatura para assistir.",
     items: [
       {
         thumbnail: "" as ImageField, // puxa automático do YouTube
@@ -206,7 +206,7 @@ export const audiovisualContent = {
   },
   socialVideos: {
     title: "Vídeos para Redes",
-    description: "Clique para expandir.",
+    description: "Produções para mídias sociais.",
     items: [
       {
         thumbnail: "" as ImageField,
@@ -269,7 +269,7 @@ export const criacaoContent = {
   number: "03",
   name: "Design & Conteúdo",
   intro:
-    "Uma ideia solta não vira peça sozinha. Aqui está o meu jeito de pegar um conceito e transformar em algo que se vê, se lê e se lembra.",
+    "Aqui está o meu jeito de pegar um conceito e transformá-lo em algo que se vê, que se lê e se lembra. Produções para redes e autorais.",
   photobook: {
     title: "Narrativa Editorial",
     name: "Nike Photobook",
