@@ -96,7 +96,7 @@ export const brandingContent = {
   number: "01",
   name: "Branding",
   intro:
-    "Posicionamento, identidade e direção para marcas que precisam comunicar intenção.",
+    "Marca é decisão, não decoração. Aqui reuni os projetos em que pensei o porquê antes do como — do zero, ou junto de quem já tinha uma história pra contar.",
   brandBuild: {
     title: "Construção de Marca",
     projects: [
@@ -175,28 +175,28 @@ export const audiovisualContent = {
   number: "02",
   name: "Audiovisual",
   intro:
-    "Curtas, filmes e vídeos para redes — direção e execução com atenção ao ritmo e à imagem.",
+    "Roteiro, corte, ritmo. Curtas que nasceram de uma provocação em sala de aula e vídeos que fiz pra marcas aparecerem do jeito certo nas redes — assista com som ligado.",
   shorts: {
     title: "Curtas",
     description:
       "Filmes curtos autorais e colaborativos. Clique na miniatura para assistir.",
     items: [
       {
-        thumbnail: "https://i.postimg.cc/sXf6V4LB/CAPA-1.png" as ImageField,
+        thumbnail: "" as ImageField, // puxa automático do YouTube
         name: "O QUE É CULTURA?",
         description:
           "Documentário-reportagem que parte do Convite à Filosofia, de Marilena Chaui, para discutir cultura como construção simbólica e social, cruzando entrevistas com cenas urbanas e visitas a centros culturais. Roteiro, edição e montagem final.",
         href: "https://youtu.be/25luCc6XadY?si=UzWuGQ2Z5lKSUjjI" as LinkField,
       },
       {
-        thumbnail: "https://i.postimg.cc/qvf1tTFQ/CAPA-2.png" as ImageField,
+        thumbnail: "" as ImageField, // puxa automático do YouTube
         name: "VOCÊ PENSA POR SI MESMO?",
         description:
           "Curta inspirado em Heidegger, que discute como a técnica não é apenas ferramenta, mas molda a forma como pensamos, enxergamos e existimos. Direção geral.",
         href: "https://youtu.be/e1h1GBetVEU?si=y3wbpRwSY2xnoP_Q" as LinkField,
       },
       {
-        thumbnail: "https://i.postimg.cc/XYwQdPSv/CAPA-3.png" as ImageField,
+        thumbnail: "" as ImageField, // puxa automático do YouTube
         name: "A ERA DO ESPETÁCULO",
         description:
           "Sátira de programação de TV construída para discutir espetacularização, performance e validação digital, com jornalismo, entretenimento e influenciadores como alvo do humor. Direção geral e edição/montagem.",
@@ -269,7 +269,7 @@ export const criacaoContent = {
   number: "03",
   name: "Design & Conteúdo",
   intro:
-    "Peças autorais, ensaios e projetos editoriais desenvolvidos ao longo da trajetória.",
+    "Uma ideia solta não vira peça sozinha. Aqui está o meu jeito de pegar um conceito e transformar em algo que se vê, se lê e se lembra.",
   photobook: {
     title: "Narrativa Editorial",
     name: "Nike Photobook",
