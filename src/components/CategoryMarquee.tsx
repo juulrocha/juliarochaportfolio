@@ -16,7 +16,6 @@ function CategoryCard({ category, priority }: { category: CategorySummary; prior
         width={1024}
         height={1024}
         loading={priority ? "eager" : "lazy"}
-        fetchPriority={priority ? "high" : "auto"}
         decoding="async"
         referrerPolicy="no-referrer"
         className="absolute inset-0 h-full w-full object-cover"
