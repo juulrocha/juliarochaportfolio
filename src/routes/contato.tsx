@@ -60,16 +60,17 @@ function Contato() {
 
             <div>
               <span className="mb-4 block text-xs uppercase tracking-widest text-black/40">
-                Redes
+                Minhas redes
               </span>
               <div className="flex flex-wrap gap-3">
-                {site.contact.socials.map((s) => (
+                {site.contact.socials.map((s, i) => (
                   <a
                     key={s.label}
                     href={s.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="rounded-full border border-black/10 px-5 py-2 text-sm font-medium transition-all hover:border-[color:var(--cobalt)] hover:bg-[color:var(--cobalt)] hover:text-white"
+                    className="animate-tool-pop rounded-full border border-black/10 px-5 py-2 text-sm font-medium transition-all hover:border-[color:var(--cobalt)] hover:bg-[color:var(--cobalt)] hover:text-white"
+                    style={{ animationDelay: `${i * 150}ms` }}
                   >
                     {s.label}
                   </a>
