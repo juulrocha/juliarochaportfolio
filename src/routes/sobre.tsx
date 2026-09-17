@@ -186,7 +186,7 @@ function Sobre() {
                 return (
                   <FadeParagraph
                     key={i}
-                    className="font-[family-name:'Caveat',cursive] text-3xl leading-snug text-black/80 sm:text-4xl"
+                    className="font-[family-name:'Caveat',cursive] text-3xl leading-[1.15] text-black/80 sm:text-4xl"
                   >
                     {p}
                   </FadeParagraph>
@@ -196,18 +196,23 @@ function Sobre() {
             })}
           </div>
 
-          {/* Bloco complementar — ferramentas + currículo */}
-          <div className="mt-20 flex flex-col items-start gap-8 border-t border-black/10 pt-10 md:mt-24 md:flex-row md:items-center md:justify-between">
-            <ToolsRow tools={site.about.tools} />
-
+          {/* Bloco complementar — currículo em destaque, depois ferramentas */}
+          <div className="mt-20 border-t border-black/10 pt-10 md:mt-24">
             <a
               href={site.about.resumeUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="animate-subtle-bounce shrink-0 rounded-full bg-[color:var(--cobalt)] px-6 py-3 text-xs uppercase tracking-widest text-white transition-opacity duration-300 hover:opacity-90"
+              className="animate-subtle-bounce inline-block rounded-full bg-[color:var(--cobalt)] px-6 py-3 text-xs uppercase tracking-widest text-white transition-opacity duration-300 hover:opacity-90"
             >
               {site.about.resumeLabel}
             </a>
+
+            <div className="mt-10">
+              <span className="mb-3 block text-xs uppercase tracking-widest text-black/40">
+                Ferramentas
+              </span>
+              <ToolsRow tools={site.about.tools} />
+            </div>
           </div>
         </div>
       </main>
