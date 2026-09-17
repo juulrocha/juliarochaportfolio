@@ -3,7 +3,7 @@ import { Link } from "@tanstack/react-router";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { categories, type CategorySummary, PLACEHOLDER_IMAGE } from "@/content/portfolio";
 
-function CategoryCard({ category }: { category: CategorySummary }) {
+function CategoryCard({ category, priority }: { category: CategorySummary; priority?: boolean }) {
   const hasImage = category.cover && category.cover.length > 0;
   return (
     <Link
@@ -15,6 +15,10 @@ function CategoryCard({ category }: { category: CategorySummary }) {
         alt={category.name}
         width={1024}
         height={1024}
+        loading={priority ? "eager" : "lazy"}
+        fetchPriority={priority ? "high" : "auto"}
+        decoding="async"
+        referrerPolicy="no-referrer"
         className="absolute inset-0 h-full w-full object-cover"
       />
       <div className="absolute inset-0 bg-gradient-to-t from-[color:var(--cobalt)] via-[color:var(--cobalt)]/20 to-transparent opacity-60 transition-opacity duration-500 group-hover:opacity-90" />
@@ -41,6 +45,9 @@ function CategoryRow({ category }: { category: CategorySummary }) {
           <img
             src={hasImage ? category.cover : PLACEHOLDER_IMAGE}
             alt={category.name}
+            loading="lazy"
+            decoding="async"
+            referrerPolicy="no-referrer"
             className="h-full w-full object-cover"
           />
         </div>
@@ -141,12 +148,22 @@ export function CategoryMarquee() {
         </button>
       </div>
 
-      {/* Versão empilhada — só aparece no celular quando expandida */}
-      <div className={`px-6 sm:hidden ${mobileExpanded ? "block" : "hidden"}`}>
-        {categories.map((c) => (
-          <CategoryRow key={c.slug} category={c} />
-        ))}
-      </div>
+      {/* Versão empilhada — só aparece no celular quando expandida.
+          Renderizada condicionalmente (não só escondida via CSS) para que
+          a animação de entrada dispare toda vez que a lista abrir. */}
+      {mobileExpanded && (
+        <div className="px-6 sm:hidden">
+          {categories.map((c, i) => (
+            <div
+              key={c.slug}
+              className="animate-in fade-in slide-in-from-bottom-3 duration-500 ease-out"
+              style={{ animationDelay: `${i * 90}ms`, animationFillMode: "backwards" }}
+            >
+              <CategoryRow category={c} />
+            </div>
+          ))}
+        </div>
+      )}
 
       {/* Carrossel horizontal — some no celular quando a lista está expandida */}
       <div className={mobileExpanded ? "hidden sm:block" : "block"}>
@@ -179,7 +196,7 @@ export function CategoryMarquee() {
           <div className="w-full overflow-hidden py-4">
             <div ref={trackRef} className="flex w-max gap-6" style={{ willChange: "transform" }}>
               {loop.map((c, i) => (
-                <CategoryCard key={`${c.slug}-${i}`} category={c} />
+                <CategoryCard key={`${c.slug}-${i}`} category={c} priority={i < categories.length} />
               ))}
             </div>
           </div>
