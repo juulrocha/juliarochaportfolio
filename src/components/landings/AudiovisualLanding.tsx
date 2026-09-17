@@ -154,11 +154,9 @@ export function AudiovisualLanding() {
       <section className="mt-24 border-t border-black/10 pt-16 md:mt-32 md:pt-24">
         <BlockTitle>{c.socialVideos.title}</BlockTitle>
         {/* Só mostra "clique para expandir" enquanto a pilha está fechada */}
-        {!socialOpen && (
-          <p className="mb-10 max-w-2xl font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
-            {c.socialVideos.description}
-          </p>
-        )}
+        <p className="mb-10 max-w-2xl font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
+          {c.socialVideos.description}
+        </p>
         <SocialStack items={c.socialVideos.items} open={socialOpen} setOpen={setSocialOpen} />
       </section>
     </CategoryLayout>
@@ -329,26 +327,30 @@ function SocialStack({
         type="button"
         onClick={() => setOpen(true)}
         aria-label="Expandir vídeos"
-        className="group relative mx-auto block h-[420px] w-full max-w-sm sm:h-[450px]"
+        className="group mx-auto flex max-w-md items-center justify-center gap-6 sm:gap-10"
       >
-        {items.slice(0, 4).map((v, i) => {
-          const offset = i * 10;
-          const rot = (i - 1.5) * 3;
-          return (
-            <div
-              key={i}
-              className="absolute left-1/2 top-0 aspect-[9/16] w-[200px] -translate-x-1/2 overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-black/5 transition-all duration-700 ease-out group-hover:shadow-2xl sm:w-[220px]"
-              style={{
-                transform: `translate(-50%, ${offset}px) rotate(${rot}deg)`,
-                zIndex: items.length - i,
-              }}
-            >
-              <SocialPreviewThumb v={v} />
-            </div>
-          );
-        })}
-        <span className="absolute bottom-0 left-0 w-full text-center text-xs uppercase tracking-widest text-[color:var(--cobalt)]">
-          Clique para expandir
+        <div className="relative h-[380px] w-[200px] shrink-0 sm:h-[410px] sm:w-[220px]">
+          {items.slice(0, 4).map((v, i) => {
+            const offset = i * 10;
+            const rot = (i - 1.5) * 3;
+            return (
+              <div
+                key={i}
+                className="absolute left-1/2 top-0 aspect-[9/16] w-full -translate-x-1/2 overflow-hidden rounded-2xl bg-white shadow-xl ring-1 ring-black/5 transition-all duration-700 ease-out group-hover:shadow-2xl"
+                style={{
+                  transform: `translate(-50%, ${offset}px) rotate(${rot}deg)`,
+                  zIndex: items.length - i,
+                }}
+              >
+                <SocialPreviewThumb v={v} />
+              </div>
+            );
+          })}
+        </div>
+        <span className="shrink-0 text-xs uppercase leading-relaxed tracking-widest text-[color:var(--cobalt)]">
+          Clique para
+          <br />
+          expandir
         </span>
       </button>
     );
