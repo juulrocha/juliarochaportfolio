@@ -142,9 +142,9 @@ export function CategoryMarquee() {
         <button
           type="button"
           onClick={() => setMobileExpanded((v) => !v)}
-          className="text-xs uppercase tracking-widest text-black/40 transition-colors hover:text-black/60 sm:pointer-events-none"
+          className="text-xs text-black/40 transition-colors hover:text-black/60 sm:pointer-events-none"
         >
-          Explore aqui
+          explore aqui
         </button>
       </div>
 
