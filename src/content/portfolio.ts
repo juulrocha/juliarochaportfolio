@@ -75,7 +75,6 @@ export const categories: CategorySummary[] = [
   { slug: "branding",    number: "01", name: "Branding",    cover: "https://i.postimg.cc/ZYcyqKX5/EUNIA-BRANDING.png" },
   { slug: "audiovisual", number: "02", name: "Audiovisual", cover: "https://i.postimg.cc/1znj9dt5/watermarked-img-7930982687483462691.jpg" },
   { slug: "criacao",     number: "03", name: "Design & Conteúdo",     cover: "https://i.postimg.cc/3rGw0fsR/Whats-App-Image-2026-07-17-at-22-36-40.jpg" },
-  { slug: "estrategia",  number: "04", name: "Estratégia",  cover: "https://i.postimg.cc/tC86KvLh/112d9922-4c98-4ecb-88d6-47568b1690b7.jpg" },
 ];
 
 // ============================================================
@@ -106,7 +105,7 @@ export const brandingContent = {
         name: "EUNIA™",
         description:
           "Da agência experimental criada por estudantes de Publicidade à construção de uma marca de comunicação especializada em Geração Z. O processo passou por diagnóstico, posicionamento, território cultural, personalidade e sistema verbal, sustentando uma identidade pensada para deixar de ser projeto acadêmico e operar como empresa. O nome carrega a ideia de reunião: identidades, culturas e pessoas que se reconhecem umas nas outras. O amarelo reforça essa energia com otimismo, inteligência e um toque de urgência, quase um aviso para prestar atenção. O ícone de movimento contínuo lembra que identidade não é estática, ela vive em transformação.",
-        href: "https://linktr.ee/agenciaeunia",
+        href: "https://linktr.ee/eunia_",
       },
       {
         image: "https://i.postimg.cc/9fMZ0wJG/Agen-PRO.png",
@@ -146,6 +145,13 @@ export const brandingContent = {
         name: "Donato Imóveis",
         description:
           "O cliente queria fugir do padrão visual das corretoras tradicionais sem virar algo complexo. A casa ocupando o “o” resolve isso com economia, um símbolo só, sem elementos soltos, pensado para funcionar igual em fachada, ícone de rede social ou favicon. O gradiente dourado entrega o toque de modernidade que ele pedia, sem depender de composição elaborada para se sustentar.",
+      },
+      {
+        image: "https://i.postimg.cc/DwRdzWSZ/JULIA-ROCHA.png",
+        name: "Due Flex",
+        description:
+          "O briefing pedia uma marca com dualidade entre tradicionalismo e modernidade, com aplicação simples em qualquer material.",
+        href: "https://acrobat.adobe.com/id/urn:aaid:sc:US:9bec90fc-cae8-4fb4-bda4-a1bcf60fde0c",
       },
     ] as BrandProject[],
   },
@@ -251,6 +257,13 @@ export const audiovisualContent = {
 // ============================================================
 //  LANDING 03 — DESIGN & CONTEÚDO
 // ============================================================
+export type ContentProject = {
+  image: ImageField;
+  name: string;
+  description: string;
+  href?: LinkField;
+};
+
 export const criacaoContent = {
   slug: "criacao" as const,
   number: "03",
@@ -259,19 +272,37 @@ export const criacaoContent = {
     "Peças autorais, ensaios e projetos editoriais desenvolvidos ao longo da trajetória.",
   photobook: {
     title: "Narrativa Editorial",
+    name: "Nike Photobook",
     description:
-      "Um recorte visual — série de imagens organizadas como um pequeno livro.",
-    image: "https://postimg.cc/7bx4p9Y8" as ImageField,
+      "Direção de arte, composição e tratamento visual a serviço de uma narrativa editorial construída a partir de um conceito, não apenas uma sequência de imagens.",
+    image: "https://i.postimg.cc/15r3tb4n/JULIA-ROCHA-(1).png" as ImageField,
     href: "https://online.fliphtml5.com/fxjcb/rine/#p=1" as LinkField,
   },
   editorial: {
     title: "Conteúdo para Redes",
     projects: [
-      { image: "" as ImageField, name: "Projeto 01", description: "Pequena descrição." },
-      { image: "" as ImageField, name: "Projeto 02", description: "Pequena descrição." },
-      { image: "" as ImageField, name: "Projeto 03", description: "Pequena descrição." },
-      { image: "" as ImageField, name: "Projeto 04", description: "Pequena descrição." },
-    ],
+      {
+        image: "https://i.postimg.cc/BQVvWHzH/TUTTO.png" as ImageField,
+        name: "Tutto Perfetto",
+        description: "Criativos para redes e copywriting, pensados para consistência de marca.",
+      },
+      {
+        image: "https://i.postimg.cc/sx03rCTy/KOMPLETA.png" as ImageField,
+        name: "Kompleta",
+        description: "Peças para redes com copy direcionado a cada etapa da comunicação.",
+      },
+      {
+        image: "https://i.postimg.cc/h43nhg0c/AME.png" as ImageField,
+        name: "Ame Crochê",
+        description: "Conteúdo visual para redes, unindo estética artesanal e linguagem de vendas.",
+        href: "https://www.instagram.com/useamecroche" as LinkField,
+      },
+      {
+        image: "https://i.postimg.cc/MGzNdrYR/VENNER.png" as ImageField,
+        name: "Venner Ambiental",
+        description: "Criativos para redes e copywriting alinhados ao posicionamento da marca.",
+      },
+    ] as ContentProject[],
   },
 };
 
