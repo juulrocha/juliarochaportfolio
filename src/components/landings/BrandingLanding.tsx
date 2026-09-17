@@ -44,8 +44,15 @@ function ClickableBadge() {
 export function BrandingLanding() {
   const c = brandingContent;
 
+  const intro = (
+    <>
+      Uma marca é decisão. Não decoração. Aqui reuni os projetos em que pensei o porquê antes do{" "}
+      <u>como</u>. Produzidos do zero ou junto com quem já tinha uma história para contar.
+    </>
+  );
+
   return (
-    <CategoryLayout number={c.number} name={c.name} intro={c.intro}>
+    <CategoryLayout number={c.number} name={c.name} intro={intro}>
       {/* Bloco 1 — Construção de Marca */}
       <section className="border-t border-black/10 pt-16 md:pt-24">
         <BlockTitle>{c.brandBuild.title}</BlockTitle>
@@ -94,6 +101,9 @@ export function BrandingLanding() {
       {/* Bloco 2 — Identidade Visual */}
       <section className="mt-24 border-t border-black/10 pt-16 md:mt-32 md:pt-24">
         <BlockTitle>{c.visualIdentity.title}</BlockTitle>
+        <p className="mb-10 max-w-2xl font-[family-name:var(--font-editorial)] text-sm leading-relaxed text-black/60">
+          Em parte destes projetos a execução foi integralmente minha; em outros, atuei como direção criativa, orientando a produção de uma equipe.
+        </p>
         <div className="grid grid-cols-2 gap-x-5 gap-y-10 sm:gap-x-8 sm:gap-y-14 md:grid-cols-3">
           {c.visualIdentity.projects.map((p, i) => {
             const image = (
